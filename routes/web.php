@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/",[HomeController::class,"index"])->name("home");
 Route::get("/service",[HomeController::class,"services"])->name("service");
 Route::get("/about",[HomeController::class,"about"])->name("about");
-Route::get("/project",[HomeController::class,"project"])->name("project");
+Route::get("/project-detail",[HomeController::class,"project"])->name("project");
 Route::get("/contact",[HomeController::class,"contact"])->name("contact");
 Route::post("/savemessage",[HomeController::class,"storeContact"])->name("contact.store");
 Route::get("/teams",[HomeController::class,"getTeam"])->name("team");
@@ -45,8 +45,6 @@ Route::prefix('admin')->group(function(){
     Route::post('/register',[DashboardController::class,'store'])->name('admin.register');
 
 });
-
-
 
 
 Route::group(['prefix'=> '/admin','middleware'=>'checkAdminAuth'], function () {
@@ -115,9 +113,6 @@ Route::group(['prefix'=> '/admin','middleware'=>'checkAdminAuth','as'=>'admin.']
     //Contact url hare
     Route::get('/contact',[ContactController::class,'index'])->name('message');
     Route::post('/contact/{id}',[ContactController::class,'destroy'])->name('message.delete');
-
-
-
 
     //admin logout
     Route::get('/logout',[DashboardController::class,'logout'])->name('logout');

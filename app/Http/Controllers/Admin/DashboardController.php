@@ -39,10 +39,7 @@ class DashboardController extends Controller
 
             return redirect()->route("admin");
         }
-
-        return response()->json("there is problae");
-    
-
+      return redirect()->back()->with('danger',"creadential is Invalid. Please Try With Valid Creadential.");
     }
 
     public function register(){

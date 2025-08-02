@@ -48,7 +48,7 @@
                             <h6>Newsletter</h6>
                             <form action="index.html">
                                 <input type="email" placeholder="Your email">
-                                <button type="submit"><i class="las la-envelope"></i></button>
+                                <button type="submit" style="padding: 17px 20px;"><i class="bi bi-envelope-fill"></i></button>
                             </form>
                             <p>Stay tuned for our latest news</p>
                         </div>

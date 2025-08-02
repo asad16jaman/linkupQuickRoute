@@ -1,10 +1,10 @@
-<div class="container-fluid sticky-top px-0">
+<div class="container-fluid px-0" id="navbar">
     
             <div class="position-absolute bg-dark" style="">
             </div>
             <div class="container-fluid px-0">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-white py-2 px-4">
-                    <a href="index.html" class="navbar-brand p-0">
+                    <a href="{{ route('home') }}" class="navbar-brand p-0">
                         <h3 class="text-primary m-0" style="color:#f65e44 !important"><i class="fas fa-donate me-3"></i>{{ $company->name }}</h3>
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

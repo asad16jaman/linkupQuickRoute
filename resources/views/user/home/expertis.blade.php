@@ -52,7 +52,7 @@
                                                                                         <h3>Join the community of over a million people</h3>
                                                                                         <form action="index.html">
                                                                                                         <input type="email" placeholder="Your email">
-                                                                                                        <button type="submit"><i class="las la-envelope"></i></button>
+                                                                                                        <button style="padding: 17px 30px;" type="submit"><i class="bi bi-envelope-fill"></i></button>
                                                                                         </form>
                                                                         </div>
                                                         </div>

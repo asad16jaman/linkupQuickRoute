@@ -40,14 +40,20 @@
         <!-- Template Stylesheet -->
         <link href="{{ asset('assets/user/css/style.css') }}" rel="stylesheet">
         <style>
-            .topbar{}
-            .topbar > div{}
+           
             .topbar > div > a{
                 color:#fff
             }
-            .topbar > div > a > i{}
-
-            
+            .fixed-nav{
+                position: fixed;
+                top: 0;
+                z-index: 999;
+            }
+            .sticky-nav{
+                position: sticky;
+                top:0;
+                z-index: 999;
+            }
         </style>
         @yield('style')
     </head>
@@ -117,7 +123,18 @@
     </body>
 
     <script>
+      window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
         
+        if (scrollTop > 200) {
+            navbar.classList.add("fixed-nav");
+            navbar.classList.remove("sticky-nav");
+        } else {
+            navbar.classList.remove("fixed-nav");
+            navbar.classList.add("sticky-nav");
+        }
+    });
 
     </script>
 

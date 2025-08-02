@@ -37,7 +37,7 @@
                             Our employees are our assets, and we provide them with a safe working environment that ensures
                             their satisfaction and security while doing&nbsp;their&nbsp;job.
                         </p>
-                        <a href="services.html" class="main-btn primary">Our Services</a>
+                        <a href="{{ route('service') }}" class="main-btn primary">Our Services</a>
                     </div>
                 </div>
             </div>
@@ -135,6 +135,7 @@
     <!-- Feature Section Start -->
                 @include("user.home.feature")
         <!-- Feature Section end  -->
+         
     <!-- Team Start -->
     @include("user.home.team", ['teams' => $teams])
     <!-- Team End -->

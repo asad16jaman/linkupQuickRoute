@@ -47,11 +47,11 @@
                     <div class="service-details_sidebar">
                         <div class="service-details_sidebar-service">
                             <ul class="service-details_sidebar-service-list list-unstyled">
-                                <li class="d-block current"><a href="standard_courier.html">Standard Courier<span> <i
+                                <li class="d-block"><a href="{{ route('standard') }}">Standard Courier<span> <i
                                                 class="las la-long-arrow-alt-right"></i></span></a></li>
-                                <li class="d-block"><a href="express_courier.html">Express Courier<span> <i
+                                <li class="d-block current"><a href="{{ route('express') }}">Express Courier<span> <i
                                                 class="las la-long-arrow-alt-right"></i></span></a></li>
-                                <li class="d-block"><a href="overnight_courier.html">Overnight Courier<span> <i
+                                <li class="d-block"><a href="{{ route('nightshift') }}">Overnight Courier<span> <i
                                                 class="las la-long-arrow-alt-right"></i></span></a></li>
                             </ul>
                         </div>
@@ -60,7 +60,7 @@
                         <div class="service-details_need-help">
                             <h2 class="service-details_need-help-title">Let's Help You for Advice</h2>
                             <div class="service-details_need-help-icon">
-                                <i class="las la-phone"></i>
+                                <i class="fas fa-phone"></i>
                             </div>
                             <div class="service-details_need-help-contact">
                                 <p>Call Anytime</p>
@@ -72,65 +72,39 @@
                 <div class="col-xl-8 col-lg-7">
                     <div class="service-details_right">
                         <div class="service-details_img">
-                            <img src="{{ asset('assets/user/img/serviceIcon/standard_courier(1).jpg') }}" alt="">
+                            <img src="{{ asset('assets/user/img/serviceIcon/express_courier(1).jpg') }}" alt="">
                         </div>
                         <div class="service-details_content">
                             <h3 class="service-details_title">Overview</h3>
-                            <p class="service-details_text-1">Standard delivery services are just what they sound like.
-                                Their primary purpose is to ship normal packages in basically the same ways that the postal
-                                service does.
-                            </p>
+                            <p class="service-details_text-1">As its name implies, the express delivery service is exclusively known for collecting and delivering parcels to destinations within a stipulated area on the same day. Their reliable delivery speed makes them ideal for organisations relying on private and confidential communications.
+                                </p>
                             <br>
-                            <p class="service-details_text-2">This courier service is the most used and cost-effective
-                                service to send parcels to any destination. It is common for delivery services to prioritise
-                                a package's weight over its size. Unlike expedited delivery services, these companies ensure
-                                that your packages arrive within two to three days from processing, making them more
-                                cost-effective than faster delivery services.</p>
+                            <p class="service-details_text-2">This courier service is the most used and cost-effective service to send parcels to any destination. It is common for delivery services to prioritise a package's weight over its size. Unlike expedited delivery services, these companies ensure that your packages arrive within two to three days from processing, making them more cost-effective than faster delivery services.</p>                            
                             <ul class="list-unstyled service-list">
                                 <li>
-                                    <i class="las la-check"></i>Sending Regular-Sized Parcels
+                                    <i class="las la-check"></i>Same-day collection availability
                                 </li>
-                                <li>
-                                    <i class="las la-check"></i>Parcels or suitcases up to 30kg
-                                </li>
-                                <li><i class="las la-check"></i>Basic shipping insurance</li>
+                                <li><i class="las la-check"></i>Delivery time: 24h-72h</li>
+                                <li><i class="las la-check"></i>Parcels up to 70kg</li>
                             </ul>
                         </div>
-                        <div class="service_details_slider mt-30 owl-carousel slick-initialized slick-slider"><button
-                                class="slick-prev slick-arrow" aria-label="Previous" type="button"
-                                style="display: block;">Previous</button>
-                            <div class="slick-list draggable">
-                                <div class="slick-track" style="opacity: 1; width: 1536px;">
-                                    <div class="slick-slide slick-current slick-active" data-slick-index="0"
-                                        aria-hidden="false"
-                                        style="width: 768px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
-                                        <div>
-                                            <div class="slider-image" style="width: 100%; display: inline-block;">
-                                                <img src="{{ asset('assets/user/img/serviceIcon/services.jpg') }}" alt="">
-                                            </div>
-                                        </div>
+                        
+                        <div class="">
+                          
+                                <div class="slick_liders">
+                                    <div>
+                                        <img src="{{ asset('assets/user/img/serviceIcon/services.jpg') }}" alt="">
                                     </div>
-                                    <div class="slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1"
-                                        style="width: 768px; position: relative; left: -768px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms linear;">
-                                        <div>
-                                            <div class="slider-image" style="width: 100%; display: inline-block;">
-                                                <img src="{{ asset('assets/user/img/serviceIcon/single_service_slide_2.jpg') }}" alt="">
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <img src="{{ asset('assets/user/img/serviceIcon/single_service_slide_2.jpg') }}" alt="">
                                     </div>
                                 </div>
-                            </div><button class="slick-next slick-arrow" aria-label="Next" type="button"
-                                style="display: block;">Next</button>
+                           
                         </div>
 
-                        <div class="service-details_content">
-                            <h3 class="service-details_title">Type of Service</h3>
-                            <p class="service-details_text-2">Standard courier shipping services follow a set guideline
-                                depending on where you live. Often, this means the package has to be under a certain weight
-                                to not incur extra charges. For the most part, the threshold for large packages is 50kg.
-                                Standard deliveries often take 2-3 days for your package to reach you. This is the best and
-                                cheapest way for you to get your package if you’re not in any rush. Standard delivery
-                                services also prioritize the weight of the package over its size.</p>
+                        <div class="service-details_content">  
+                            <h3 class="service-details_title">Type of Service</h3>     
+                            <p class="service-details_text-2">This option is a good one if you know the weight of your expected package. If you’re uncertain though, then you may want to think of other options. They’ll surely offer a variety of delivery options, including some of the others on this list. Generally, though, most standard delivery services will transport packages by truck in 2 or 3 days. </p>                                                                             
                             <br>
                         </div>
                         <div class="service-details_img">
@@ -141,13 +115,9 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="service-details_content">
-                            <h3 class="service-details_title">Conclusion</h3>
-                            <p class="service-details_text-2">This option is a good one if you know the weight of your
-                                expected package. If you’re uncertain though, then you may want to think of other options.
-                                They’ll surely offer a variety of delivery options, including some of the others on this
-                                list. Generally, though, most standard delivery services will transport packages by truck in
-                                2 or 3 days. </p>
+                        <div class="service-details_content">  
+                            <h3 class="service-details_title">Conclusion</h3>                                                      
+                            <p class="service-details_text-2">If you think the same day delivery service is fast, then you’ll find rush and immediate deliveries amazing. Rush and on-demand deliveries are for those who need it as soon as possible. You won’t need to wait more than half a day to get your deliveries this way.</p>
                             <br>
                         </div>
                     </div>
@@ -159,21 +129,22 @@
 @endsection
 
 
-@section('script')
+@push('script')
+    
+    <script>
 
-<script>
-     $(document).ready(function(){
-        $('.service_details_slider').slick({
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: true,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            dots: true, // jodi dots dorkar hoy
+        $(document).ready(function(){
+            $(".slick_liders").slick({
+                centerMode: true,
+                autoplay: true,
+                autoplaySpeed: 1000,
+                infinite: true,
+                speed: 600,
+                fade: true,
+                cssEase: "linear"
+            });
         });
-    });
-</script>
+    </script>
 
-@endsection
+@endpush
 

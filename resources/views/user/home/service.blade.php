@@ -19,7 +19,7 @@
                                                                                           <img style="width:70px;color:orange" src="{{ asset('assets/user/img/serviceIcon/courier.png')}}" alt="fail to load">
                                                                         </div>
                                                                         <div class="service-content">
-                                                                                        <h4><a href="standard_courier.html">Standard Courier <br> Services</a></h4>
+                                                                                        <h4><a href="{{ route('standard') }}">Standard Courier <br> Services</a></h4>
                                                                                         <hr>
                                                                                         <p>The most affordable type of courier service available for sending
                                                                                                         regular-sized parcels
@@ -29,7 +29,7 @@
                                                                                                         <li><i class="las la-check"></i> Parcels or suitcases up to 30kg</li>
                                                                                                         <li><i class="las la-check"></i> Basic shipping insurance</li>
                                                                                         </ul>
-                                                                                        <a class="main-btn primary" href="standard_courier.html">Find out more <i
+                                                                                        <a class="main-btn primary" href="{{ route('standard') }}">Find out more <i
                                                                                                                         class="las la-arrow-right"></i></a>
                                                                         </div>
                                                         </div>
@@ -41,7 +41,7 @@
                                                                                        <img style="width:70px;color:orange" src="{{ asset('assets/user/img/serviceIcon/pickup-truck.png')}}" alt="fail to load">
                                                                         </div>
                                                                         <div class="service-content">
-                                                                                        <h4><a href="express_courier.html">Express Delivery <br> Services</a></h4>
+                                                                                        <h4><a href="{{ route('express') }}">Express Delivery <br> Services</a></h4>
                                                                                         <hr>
                                                                                         <p>The Express Delivery Service is the fastest shipping alternative among all
                                                                                                         types of
@@ -51,7 +51,7 @@
                                                                                                         <li><i class="las la-check"></i> Delivery time: 24h–72h</li>
                                                                                                         <li><i class="las la-check"></i> Parcels up to 70kg</li>
                                                                                         </ul>
-                                                                                        <a class="main-btn primary" href="express_courier.html">Find out more <i
+                                                                                        <a class="main-btn primary" href="{{ route('express') }}">Find out more <i
                                                                                                                         class="las la-arrow-right"></i></a>
                                                                         </div>
                                                         </div>
@@ -63,7 +63,7 @@
                                                                                         <img style="width:70px;color:orange" src="{{ asset('assets/user/img/serviceIcon/box.png')}}" alt="fail to load">
                                                                         </div>
                                                                         <div class="service-content">
-                                                                                        <h4><a href="overnight_courier.html">Over Night <br> Courier</a></h4>
+                                                                                        <h4><a href="{{ route('nightshift') }}">Over Night <br> Courier</a></h4>
                                                                                         <hr>
                                                                                         <p>This service will usually transport the goods during the night or the early
                                                                                                         hours of
@@ -73,7 +73,7 @@
                                                                                                         <li><i class="las la-check"></i> Parcels or suitcases up to 30kg</li>
                                                                                                         <li><i class="las la-check"></i> Basic shipping insurance</li>
                                                                                         </ul>
-                                                                                        <a class="main-btn primary" href="overnight_courier.html">Find out more <i
+                                                                                        <a class="main-btn primary" href="{{ route('nightshift') }}">Find out more <i
                                                                                                                         class="las la-arrow-right"></i></a>
                                                                         </div>
                                                         </div>
@@ -81,7 +81,7 @@
                                         <!-- Owl Carousel End -->
 
                                         <div class="more-services text-center mt-4">
-                                                        <p>Secured, Fastest and Affordable Delivery Service, <a href="services.html">Explore Our
+                                                        <p>Secured, Fastest and Affordable Delivery Service, <a href="{{ route('service') }}">Explore Our
                                                                                         Services!</a>
                                                         </p>
                                         </div>
@@ -104,19 +104,19 @@
                                         responsive: {
                                                         0: {
                                                                         items: 1,
-                                                                        nav: false,
+                                                                    
                                                                         dots: false,
                                                         },
 
                                                         575: {
                                                                         items: 1,
-                                                                        nav: false,
+                                                                     
                                                                         dots: false,
                                                         },
 
                                                         767: {
                                                                         items: 2,
-                                                                        nav: false,
+                                                                        
                                                         },
 
                                                         990: {

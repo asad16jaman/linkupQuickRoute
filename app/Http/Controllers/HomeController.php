@@ -49,8 +49,8 @@ class HomeController extends Controller
 
     public function project(){
 
-        $projects = Product::with('image')->get();
-        return view('user.project',compact(['projects']));
+        
+        return view('user.project');
     }
 
     public function contact(){

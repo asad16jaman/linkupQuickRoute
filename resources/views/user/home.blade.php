@@ -162,7 +162,7 @@
                                                                                         <br>
 
                                                                                         <div class="signature-wrap">
-                                                                                                        <a href="about.html" class="main-btn primary d-none d-md-block">Learn
+                                                                                                        <a href="{{ route('about') }}" class="main-btn primary d-none d-md-block">Learn
                                                                                                                         More</a>
                                                                                                         <div class="signature-body">
                                                                                                                         <h6>Michael Brian</h6>
@@ -190,13 +190,6 @@
         <!-- Services Start -->
         @include("user.home.service")
 
-        
-
-
-
-        <!-- Services End -->
-
-
         <!-- Project Start -->
         <!-- include("user.home.project", ['projects' => $projects]) -->
 
@@ -205,7 +198,7 @@
                                         <div class="project-list mt-10">
                                                         <div class="row mt-30">
                                                                         <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="project-details.html" class="single-project-wrapper">
+                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
                                                                                                         <div class="project-bg">
                                                                                                                         <img src="{{ asset('assets/user/img/heroImg/1-1.jpg')}}" alt="">
                                                                                                         </div>
@@ -217,7 +210,7 @@
                                                                         </div>
 
                                                                         <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="project-details.html" class="single-project-wrapper">
+                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
                                                                                                         <div class="project-bg">
                                                                                                                         <img src="{{ asset('assets/user/img/heroImg/1-2.jpg')}}" alt="">
                                                                                                         </div>
@@ -229,7 +222,7 @@
                                                                         </div>
 
                                                                         <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="project-details.html" class="single-project-wrapper">
+                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
                                                                                                         <div class="project-bg">
                                                                                                                         <img src="{{ asset('assets/user/img/heroImg/1-3.jpg')}}" alt="">
                                                                                                         </div>
@@ -241,7 +234,7 @@
                                                                         </div>
 
                                                                         <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="project-details.html" class="single-project-wrapper">
+                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
                                                                                                         <div class="project-bg">
                                                                                                                         <img src="{{ asset('assets/user/img/heroImg/1-5.jpg')}}" alt="">
                                                                                                         </div>
@@ -252,7 +245,7 @@
                                                                                         </a>
                                                                         </div>
                                                                         <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="project-details.html" class="single-project-wrapper">
+                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
                                                                                                         <div class="project-bg">
                                                                                                                         <img src="{{ asset('assets/user/img/heroImg/1-6.jpg')}}" alt="">
                                                                                                         </div>
@@ -263,7 +256,7 @@
                                                                                         </a>
                                                                         </div>
                                                                         <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="project-details.html" class="single-project-wrapper">
+                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
                                                                                                         <div class="project-bg">
                                                                                                                         <img src="{{ asset('assets/user/img/heroImg/1-7.jpg')}}" alt="">
                                                                                                         </div>
@@ -436,7 +429,7 @@
 @push('script')
 
         <script>
-                        // Service Slider
+                       
                       
                        
         </script>

@@ -1,125 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>@yield('title')</title>
-    <meta
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-      name="viewport"
-    />
-    <link
-      rel="icon"
-      href="{{ asset('assets/admin/img/kaiadmin/favicon.ico') }}"
-      type="image/x-icon"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-white px-4">
 
-    <!-- Fonts and icons -->
-    <script src="{{ asset('assets/admin/js/plugin/webfont/webfont.min.js') }}"></script>
-    <script>
-      WebFont.load({
-        google: { families: ["Public Sans:300,400,500,600,700"] },
-        custom: {
-          families: [
-            "Font Awesome 5 Solid",
-            "Font Awesome 5 Regular",
-            "Font Awesome 5 Brands",
-            "simple-line-icons",
-          ],
-          urls: ["{{ asset('assets/admin/css/fonts.min.css') }}"],
-        },
-        active: function () {
-          sessionStorage.fonts = true;
-        },
-      });
-    </script>
-
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/plugins.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/kaiadmin.min.css') }}" />
-
-
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/demo.css') }}" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <!-- Sidebar -->
-      <div class="container w-100 h-100 d-flex justify-content-center align-items-center">
-        <div class="col-md-6 col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center">Admin Login</h2>
-                </div>
-                <div class="card-body ">
-                    <form action="" method="post">
-                      @csrf
-                        <div class="form-group">
-                          <label for="email2">User Name</label>
-                          <input type="text" name="username" class="form-control" placeholder="Enter Username">
-                          <small id="emailHelp2" class="form-text text-muted">We'll never share your username with anyone
-                            else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <input type="submit" value="Submit" class="btn btn-primary me-2">
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <a href="">Go Back</a>
-                </div>
-            </div>
-        </div>
+<div class="flex flex-col-reverse md:flex-row w-full max-w-[840px] bg-white shadow-2xl rounded-2xl overflow-hidden">    <!-- Left image section -->
+    <div class="w-full md:w-1/2 bg-gray-50 flex items-center justify-center p-6">
+      <img src="{{ asset('assets/admin/img/login.png') }}" alt="login illustration" class="w-full max-w-xs">
+    </div>
+    
+    <!-- Right form section -->
+    <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
+      <!-- Logo -->
+      <div class="flex justify-center mb-3">
+        <img src="{{ ($company && $company->logo) ? asset('storage').'/'.$company->logo :'https://i.ibb.co/zfHgkR4/logo.png' }}" alt="BD Color Logo" style="width:120px;height:auto">
       </div>
 
-      
+      <h2 class="text-2xl font-semibold text-center text-gray-700 mb-3">Sign in into your account!</h2>
+        @if(session()->exists('danger'))
+            <p class="text-center" style="color:red">{{ session('danger') }}</p>
+        @endif
+      <form action="" method="POST" class="space-y-5">
+        @csrf
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          class="w-full px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          name="password"
+          class="w-full px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+          required
+        />
+        <button
+          type="submit"
+          class="px-3 bg-green-500 hover:bg-green-600 text-white font-semibold py-1 rounded-md transition"
+        >
+          Login
+        </button>
+      </form>
+
+      <p class="text-center text-sm text-gray-400 mt-6">Copyright © 2025 {{ $company->name }}</p>
     </div>
-    <!--   Core JS Files   -->
-    <script src="{{ asset('assets/admin/js/core/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/core/bootstrap.min.js') }}"></script>
+  </div>
 
-    <!-- jQuery Scrollbar -->
-    <script src="{{ asset('assets/admin/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
-    <!-- Chart JS -->
-    <!-- <script src="{{ asset('assets/admin/js/plugin/chart.js/chart.min.js') }}"></script> -->
+  @if(session()->exists('danger'))
 
-    <!-- jQuery Sparkline -->
-    <script src="{{ asset('assets/admin/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
+            <script>
 
-    <!-- Chart Circle -->
-    <script src="{{ asset('assets/admin/js/plugin/chart-circle/circles.min.js') }}"></script>
+              //Notify
 
-    <!-- Datatables -->
-    <script src="{{ asset('assets/admin/js/plugin/datatables/datatables.min.js') }}"></script>
+              let message = @json( session('danger'));
+              let type = 'danger';
+              let iconClass = {
+                
+                danger: 'fa fa-times-circle'
+            };
+            
+              
+              $.notify({
+                icon: iconClass[type],
+                message
+              },{
+                type,
+                placement: {
+                  from: "top",
+                  align: "center"
+                },
+                time: 1000,
+              });
 
-    <!-- Bootstrap Notify -->
-    <script src="{{ asset('assets/admin/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+            </script>
 
-    <!-- jQuery Vector Maps -->
-    <script src="{{ asset('assets/admin/js/plugin/jsvectormap/jsvectormap.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/plugin/jsvectormap/world.js') }}"></script>
+      @endif
 
-    <!-- Sweet Alert -->
-    <script src="{{ asset('assets/admin/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
-
-    <!-- Kaiadmin JS -->
-    <script src="{{ asset('assets/admin/js/kaiadmin.min.js') }}"></script>
-
-    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-    <script src="{{ asset('assets/admin/js/setting-demo.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/demo.js') }}"></script>
-    <script>
-      
-
-      
-
-      
-    </script>
-  </body>
+</body>
 </html>
+

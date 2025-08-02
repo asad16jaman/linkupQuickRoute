@@ -10,6 +10,12 @@
 @section('style')
 
 <style>
+    .container-fluid,
+    body,
+    html {
+        overflow: visible !important;
+    
+    }
     .team-bg {
             background-image: url('{{ asset('assets/user/img/team/pricing.jpg') }}');
         }
@@ -18,7 +24,6 @@
 @endsection
 
 @section('maincontent')
-
          <!-- Header Start -->
         <div class="breadcrumb-area team-bg">
         <div class="overlay"></div>
@@ -34,7 +39,6 @@
             </div>
         </div>
     </div>
-
     <div class="breadcrumb-meta">
         <div class="container">
             <ul class="breadcrumb d-flex">

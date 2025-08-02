@@ -16,7 +16,7 @@
                             <li><i class="las la-check"></i> Support: Yes</li>
                             <li><i class="las la-check"></i> Tracking: No.</li>
                         </ul>
-                        <a href="#" class="site-btn">Choose Plan</a>
+                        <a href="{{ route('pricing') }}" class="site-btn">Choose Plan</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 mt-30">
@@ -34,7 +34,7 @@
                             <li><i class="las la-check"></i> Support: Yes</li>
                             <li><i class="las la-check"></i> Tracking: Yes</li>
                         </ul>
-                        <a href="#" class="site-btn">Choose Plan</a>
+                        <a href="{{ route('pricing') }}" class="site-btn">Choose Plan</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 mt-30">
@@ -52,7 +52,7 @@
                             <li><i class="las la-check"></i> Support: Yes</li>
                             <li><i class="las la-check"></i> Tracking: Yes</li>
                         </ul>
-                        <a href="#" class="site-btn">Choose Plan</a>
+                        <a href="{{ route('pricing') }}" class="site-btn">Choose Plan</a>
                     </div>
                 </div>
             </div>

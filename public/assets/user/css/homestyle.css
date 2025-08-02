@@ -2245,10 +2245,10 @@ ul.feature-list li i {
 }
 .feature-single i {
   background: #ef5f2d;
-  padding: 10px;
+  padding: 2px 10px;
   border-radius: 50px;
   color: #fff;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 .feature-title h5 {

@@ -8,6 +8,7 @@
 @endsection
 
 @section('style')
+<!-- Add the slick-theme.css if you want default styling -->
     <style>
         .standard_courier {
             background-image: url('{{ asset('assets/user/img/team/standard_courier.jpg')}}');
@@ -42,9 +43,6 @@
             </ul>
         </div>
     </div>
-
-
-
     <section class="service-details pb-50">
         <div class="container">
             <div class="row gx-5">
@@ -52,11 +50,11 @@
                     <div class="service-details_sidebar">
                         <div class="service-details_sidebar-service">
                             <ul class="service-details_sidebar-service-list list-unstyled">
-                                <li class="d-block current"><a href="standard_courier.html">Standard Courier<span> <i
+                                <li class="d-block current"><a href="{{ route('standard') }}">Standard Courier<span> <i
                                                 class="las la-long-arrow-alt-right"></i></span></a></li>
-                                <li class="d-block"><a href="express_courier.html">Express Courier<span> <i
+                                <li class="d-block"><a href="{{ route('express') }}">Express Courier<span> <i
                                                 class="las la-long-arrow-alt-right"></i></span></a></li>
-                                <li class="d-block"><a href="overnight_courier.html">Overnight Courier<span> <i
+                                <li class="d-block"><a href="{{ route('nightshift') }}">Overnight Courier<span> <i
                                                 class="las la-long-arrow-alt-right"></i></span></a></li>
                             </ul>
                         </div>
@@ -66,11 +64,11 @@
 
                             <h2 class="service-details_need-help-title">Let's Help You for Advice</h2>
                             <div class="service-details_need-help-icon">
-                                <i class="las la-phone"></i>
+                                <i class="fas fa-phone"></i>
                             </div>
                             <div class="service-details_need-help-contact">
                                 <p>Call Anytime</p>
-                                <a href="tel:+97430882665">+97 430 882 665</a>
+                                <a href="tel:+97430882665">{{ $company->phone ?? '+8801xxxxxxxxx' }}</a>
                             </div>
                         </div>
 
@@ -103,32 +101,20 @@
                                 <li><i class="las la-check"></i>Basic shipping insurance</li>
                             </ul>
                         </div>
+                         
+                         
 
-                        <div class="service_details_slider mt-30 owl-carousel slick-initialized slick-slider"><button
-                                class="slick-prev slick-arrow" aria-label="Previous" type="button"
-                                style="display: block;">Previous</button>
-                            <div class="slick-list draggable">
-                                <div class="slick-track" style="opacity: 1; width: 1536px;">
-                                    <div class="slick-slide slick-current slick-active" data-slick-index="0"
-                                        aria-hidden="false"
-                                        style="width: 768px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
-                                        <div>
-                                            <div class="slider-image" style="width: 100%; display: inline-block;">
-                                                <img src="{{ asset('assets/user/img/serviceIcon/services.jpg') }}" alt="">
-                                            </div>
-                                        </div>
+                        <div class="">
+                          
+                                <div class="slick_liders">
+                                    <div>
+                                        <img src="{{ asset('assets/user/img/serviceIcon/services.jpg') }}" alt="">
                                     </div>
-                                    <div class="slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1"
-                                        style="width: 768px; position: relative; left: -768px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms linear;">
-                                        <div>
-                                            <div class="slider-image" style="width: 100%; display: inline-block;">
-                                                <img src="{{ asset('assets/user/img/serviceIcon/single_service_slide_2.jpg') }}" alt="">
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <img src="{{ asset('assets/user/img/serviceIcon/single_service_slide_2.jpg') }}" alt="">
                                     </div>
                                 </div>
-                            </div><button class="slick-next slick-arrow" aria-label="Next" type="button"
-                                style="display: block;">Next</button>
+                           
                         </div>
 
                         <div class="service-details_content">
@@ -167,21 +153,22 @@
 @endsection
 
 
-@section('script')
+@push('script')
+    
+    <script>
 
-<script>
-     $(document).ready(function(){
-        $('.service_details_slider').slick({
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: true,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            dots: true, // jodi dots dorkar hoy
+        $(document).ready(function(){
+            $(".slick_liders").slick({
+                centerMode: true,
+                autoplay: true,
+                autoplaySpeed: 1000,
+                infinite: true,
+                speed: 600,
+                fade: true,
+                cssEase: "linear"
+            });
         });
-    });
-</script>
+    </script>
 
-@endsection
+@endpush
 

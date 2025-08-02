@@ -42,7 +42,7 @@
                                                                                         <div class="feature-desc">
                                                                                                         <p>Courier services will package according to customers' needs.</p>
                                                                                         </div>
-                                                                                        <a href="services.html"><i class="bi bi-arrow-right"></i></a>
+                                                                                        <a href="{{ route('service') }}"><i class="bi bi-arrow-right"></i></a>
                                                                         </div>
 
                                                                         <!-- Feature 2 -->
@@ -56,7 +56,7 @@
                                                                                         <div class="feature-desc">
                                                                                                         <p>Shipments any day or time, even on weekends and holidays.</p>
                                                                                         </div>
-                                                                                        <a href="services.html"><i class="bi bi-arrow-right"></i></a>
+                                                                                        <a href="{{ route('service') }}"><i class="bi bi-arrow-right"></i></a>
                                                                         </div>
 
                                                                         <!-- Feature 3 -->
@@ -70,7 +70,7 @@
                                                                                         <div class="feature-desc">
                                                                                                         <p>Parcel charge depends on speedy delivery at a flexible price.</p>
                                                                                         </div>
-                                                                                        <a href="services.html"><i class="bi bi-arrow-right"></i></a>
+                                                                                        <a href="{{ route('service') }}"><i class="bi bi-arrow-right"></i></a>
                                                                         </div>
 
                                                                         <!-- Feature 4 -->
@@ -84,7 +84,7 @@
                                                                                         <div class="feature-desc">
                                                                                                         <p>Specialty couriers deliver items faster than other services.</p>
                                                                                         </div>
-                                                                                        <a href="services.html"><i class="bi bi-arrow-right"></i></a>
+                                                                                        <a href="{{ route('service') }}"><i class="bi bi-arrow-right"></i></a>
                                                                         </div>
 
                                                                         <!-- Feature 5 -->
@@ -98,7 +98,7 @@
                                                                                         <div class="feature-desc">
                                                                                                         <p>Highest level of security and tracking for your packages.</p>
                                                                                         </div>
-                                                                                        <a href="services.html"><i class="bi bi-arrow-right"></i></a>
+                                                                                        <a href="{{ route('service') }}"><i class="bi bi-arrow-right"></i></a>
                                                                         </div>
 
                                                         </div>
@@ -129,13 +129,12 @@
                                         responsive: {
                                                         0: {
                                                                         items: 1,
-                                                                        nav: false,
+                                                                       
                                                                         dots: false,
                                                         },
 
                                                         575: {
-                                                                        items: 2,
-                                                                        nav: false,
+                                                                        items: 1,
                                                                         dots: false,
                                                         },
 
@@ -146,13 +145,13 @@
 
                                                         990: {
                                                                         items: 3,
-                                                                        loop: true,
+                                                                       
                                                                         dots: false,
                                                         },
                                                         1200: {
                                                                         items: 4,
                                                                         dots: true,
-                                                                        loop: true,
+                                                                        
                                                         },
                                         },
                         });

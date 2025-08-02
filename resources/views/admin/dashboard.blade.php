@@ -5,106 +5,120 @@
 @section('pageside')
   @include('admin.layout.sidebar',['page' => 'home'])
 @endsection
+@section('style')
+  <style>
+    .d_icon{
+          font-size: 36px;
+          margin-bottom: 0px;
+          line-height: 0;
+    }
+  </style>
+@endsection
 
 @section('bodyContent')
 
 <div class="container">
 
           <div class="page-inner">
-            <div
-              class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
-            >
-              <div>
-                <h3 class="fw-bold mb-3">Dashboard</h3>
-                <h6 class="op-7 mb-2">All Summery will show hare</h6>
+            <div class="d-flex align-items-center justify-content-center align-items-md-center flex-column flex-md-row pt-2 pb-4">
+              <div >
+                <div class="card mb-1">
+                  <div class="card-body d-flex justify-content-center">
+                      <img src="{{ $company->logo ? asset('storage').'/'.$company->logo : "" }}" style="width:70px;height:55px" alt="">
+                  </div>
+                </div>
+                <h3 class="fw-bold mb-3 text-center">{{ $company->name }}</h3>
               </div>
               
             </div>
             <div class="row">
-              <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-icon">
-                        <div
-                          class="icon-big text-center icon-primary bubble-shadow-small"
-                        >
-                          <i class="fas fa-users"></i>
+                  <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('admin.users') }}">
+                        <div class="card" style="background:#ebf8ff">
+                          <div class="card-body text-center">
+                              <p class="d_icon"><i class="fas fa-users"></i></p>
+                              <h4>Users</h4>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Visitors</p>
-                          <h4 class="card-title">1,294</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </a>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-icon">
-                        <div
-                          class="icon-big text-center icon-info bubble-shadow-small"
-                        >
-                          <i class="fas fa-user-check"></i>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('admin.category') }}">
+                        <div class="card" style="background:#fffbeb">
+                          <div class="card-body text-center">
+                              <p class="d_icon"><i class="fas fa-folder-open"></i></p>
+                              <h4>Category</h4>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Subscribers</p>
-                          <h4 class="card-title">1303</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </a>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-icon">
-                        <div
-                          class="icon-big text-center icon-success bubble-shadow-small"
-                        >
-                          <i class="fas fa-luggage-cart"></i>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('admin.product') }}">
+                        <div class="card" style="background:#f5f3ff">
+                          <div class="card-body text-center">
+                              <p class="d_icon"><i class="fas fa-box"></i></p>
+                              <h4>Products</h4>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Sales</p>
-                          <h4 class="card-title">$ 1,345</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </a>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-icon">
-                        <div
-                          class="icon-big text-center icon-secondary bubble-shadow-small"
-                        >
-                          <i class="far fa-check-circle"></i>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('admin.slider') }}">
+                        <div class="card" style="background:#fdf2f8	">
+                          <div class="card-body text-center">
+                              <svg style="width:31px" class="svg-inline--fa fa-sliders-h fa-w-16 fa-2x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sliders-h" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M496 384H160v-16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v16H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h80v16c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-16h336c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm0-160h-80v-16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v16H16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h336v16c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-16h80c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm0-160H288V48c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v16H16C7.2 64 0 71.2 0 80v32c0 8.8 7.2 16 16 16h208v16c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-16h208c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16z"></path></svg>
+                              <h4>Slider</h4>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col col-stats ms-3 ms-sm-0">
-                        <div class="numbers">
-                          <p class="card-category">Order</p>
-                          <h4 class="card-title">576</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </a>
                 </div>
-              </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="">
+                        <div class="card" style="background: #f0fdfa">
+                          <div class="card-body text-center">
+                              <p class="d_icon"><i class="fas fa-handshake"></i></p>
+                              <h4>Dealers</h4>
+                          </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="">
+                        <div class="card" style="background:#f0fdf4	">
+                          <div class="card-body text-center">
+                              <p class="d_icon"><i class="fas fa-users-cog"></i></p>
+                              <h4>Management</h4>
+                          </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('admin.photogallery') }}">
+                        <div class="card" style="background:#eef2ff	">
+                          <div class="card-body text-center">
+                              <p class="d_icon"><i class="fas fa-images"></i></p>
+                              <h4>Gallery</h4>
+                          </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ route('admin.logout') }}">
+                        <div class="card" style="background:#f9d4d4	">
+                          <div class="card-body text-center">
+                              <p class="d_icon"><i class="fas fa-share"></i></p>
+                              <h4>Logout</h4>
+                          </div>
+                        </div>
+                    </a>
+                </div>
             </div>
           </div>
         </div>
