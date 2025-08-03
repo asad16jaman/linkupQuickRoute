@@ -14,10 +14,10 @@
         }
 
         .profileImg {
-            width: 150px;
+            width: auto;
             height: 100px;
-            object-fit: contain;
-            /* border: 2px dashed #ccc; */
+            object-fit: cover;
+            border: 2px dashed #ccc;
             border-radius: 6px;
         }
 
@@ -37,8 +37,10 @@
 @endsection
 
 @section('pageside')
-  @include('admin.layout.sidebar',['page' => 'slider'])
+    @include('admin.layout.sidebar', ['page' => 'service'])
 @endsection
+
+
 
 @section('bodyContent')
 
@@ -48,26 +50,28 @@
 
             <div class="card mb-1">
                 <div class="card-header pt-1 pb-0">
-                    <h6 class="text-center">Create Slider</h6>
+                    <h4 class="text-center">Create Category</h4>
                 </div>
                 <form method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="card-body p-2 ">
+                    <div class="card-body p-3 ">
                         <div class="row">
 
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-8 col-12">
+
+
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
                                         <div class="">
-                                            <label for="title">Title :</label>
+                                            <label for="email2">Name :</label>
 
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1 @error('title') is-invalid
-                                        @enderror" name="title"
-                                            value="{{ old('title',optional($editSlider)->title) }}" placeholder="Enter Title">
-                                        @error('title')
+                                        <input type="text" class="form-control p-1 @error('name') is-invalid
+                                        @enderror" name="name" value="{{ old('name', optional($editCategory)->name) }}"
+                                            placeholder="Enter Full Name">
+                                        @error('name')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -76,60 +80,59 @@
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
                                         <div class="">
-                                            <label for="title">Page Name :</label>
+                                            <label for="description">Description :</label>
 
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <input type="text" class="form-control p-1 @error('pagename') is-invalid
-                                        @enderror" name="pagename"
-                                            value="{{ old('pagename',optional($editSlider)->pagename) }}" placeholder="Enter Page Name">
-                                        @error('pagename')
-                                            <p class="text-danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row mb-2">
-                                    <div class="col-md-3 col-12">
-                                        <div class="">
-                                            <label for="">Description :</label>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9 col-12">
-                                        <textarea class="form-control @error('description') is-invalid
+                                        <textarea class="form-control  @error('description') is-invalid
                                         @enderror" name="description" placeholder="" id="comment"
-                                            rows="3">{{ old('description',optional($editSlider)->description) }}</textarea>
+                                            rows="3">{{ old('description', optional($editCategory)->description) }}</textarea>
                                         @error('description')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
+
+
+
                             </div>
-                            <div class="col-md-6 col-12">
 
+                            <div class="col-md-4 col-12">
+                                <div class="col-md-12 d-flex justify-content-center">
 
-                                <div class="row">
-                                    <div class="col-md-12 col-12 d-flex justify-content-center mt-1">
-                                        <label for="imageInput" style="cursor: pointer;">
-                                            <!-- (placeholder) -->
-                                            <img id="previewImage"
-                                                src="{{ $editSlider ? asset('storage/' . $editSlider->img) : asset('assets/admin/img/demoUpload.jpg') }}"
-                                                alt="Demo Image" class="profileImg" style="">
-                                        </label>
-
-                                        <!-- hidden input -->
-                                        <input type="file" name="img" id="imageInput" name="image" accept="image/*"
-                                            style="display: none;">
-                                    </div>
-                                    <p class="text-center">Image Must be:jpg,jpeg,png,webp.950px:640px</p>
-                                    @error('img')
-                                            <p class="text-danger text-center mt-1">{{ $message }}</p>
+                                    <div class="row">
+                                        <div class="col-md-12 col-12 d-flex justify-content-center mt-1">
+                                            <label for="imageInput" style="cursor: pointer;">
+                                                <!-- (placeholder) -->
+                                                <img id="previewImage"
+                                                    src="{{ $editCategory ? asset('storage/' . $editCategory->img) : asset('assets/admin/img/demoUpload.jpg') }}"
+                                                    alt="Demo Image" class="profileImg" style="">
+                                            </label>
+                                            <!-- hidden input -->
+                                            <input type="file" name="img" id="imageInput" name="image" accept="image/*"
+                                                style="display: none;">
+                                        </div>
+                                        @error('description')
+                                            <p class="text-danger text-center">{{ $message }}</p>
                                         @enderror
+                                    </div>
+
+
                                 </div>
 
 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Long Description</label>
+                                    <textarea name="long_description"  id="longDescription" class="form-control @error('long_description') is-invalid @enderror">{{ old('long_description',optional($editCategory)->long_description) }}</textarea>
+                                    @error('long_description')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -140,25 +143,22 @@
                 </form>
             </div>
 
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header p-2">
-                            <h6 class="card-title ">Slider Items</h6>
+                            <h5 class="card-title ">ALL Services</h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <div id="basic-datatables_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="dataTables_length" id="basic-datatables_length">
 
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6">
+                                        <div class="col-sm-12 offset-md-6 col-md-6">
                                             <div id="basic-datatables_filter" class="dataTables_filter">
                                                 <label class="d-flex justify-content-end">Search:
-                                                    <form id="searchform">
+                                                    <form method="GET">
 
                                                         <input type="search" value="{{ request()->query('search') }}"
                                                             name="search" class="form-control form-control-sm"
@@ -175,38 +175,39 @@
                                                 aria-describedby="basic-datatables_info">
                                                 <thead class="headbg">
                                                     <tr role="row bg-dark">
-                                                        <th style="width: 136.031px;" class="p-1">SL NO:</th>
-                                                        <th style="width: 214.469px;" class="p-1">Image</th>
-                                                        <th style="width: 214.469px;" class="p-1">Page Name</th>
-                                                        <th style="width: 214.469px;" class="p-1">title</th>
-                                                        <th style="width: 214.469px;" class="p-1">description</th>
-                                                        <th style="width: 81.375px;" class="p-1">Action</th>
+                                                        <th style="width: 136.031px;">SL NO:</th>
+                                                        <th style="width: 214.469px;">Picture</th>
+                                                        <th style="width: 214.469px;">Name</th>
+                                                        <th style="width: 214.469px;">Description</th>
+                                                        <th style="width: 81.375px;">Action</th>
                                                     </tr>
                                                 </thead>
+
                                                 <tbody>
 
-                                                    @forelse($allSlider as $item)
+
+                                                    @forelse($allCategories as $category)
                                                         <tr role="row" class="odd">
-                                                            <td class="sorting_1">{{ $loop->iteration }}</td>
+                                                            <td class="sorting_1">{{ $loop->iteration . " ($category->id)" }}
+                                                            </td>
                                                             <td>
                                                                 <img class="tablepicture"
-                                                                    src="{{ asset('storage/' . $item->img) }}"
-                                                                    alt="Image Not Found">
-                                                            </td>
-                                                            <td>{{ substr($item->pagename, 0, 20) }}...</td>
-                                                            <td>{{ substr($item->title, 0, 20) }}...</td>
-                                                            <td>{{ substr($item->description, 0, 30) }}...</td>
+                                                                    src="{{ $category->img ? asset('storage/' . $category->img) : asset('assets/admin/img/demoProfile.png') }}"
+                                                                    alt="user profile picture">
 
+                                                            </td>
+                                                            <td>{{ $category->name }}</td>
+                                                            <td>{{ substr($category->description, 0, 50) }}...</td>
 
                                                             <td class="d-flex justify-content-center">
 
-                                                                <a href="{{ route('admin.slider' ,['id'=>$item->id,'page'=>request()->query('page'),'search'=>request()->query('search')]) }}"
+                                                                <a href="{{  route('admin.category', ['id' => $category->id, 'page' => request()->query('page'), 'search' => request()->query('search')])  }}"
                                                                     class="btn btn-info p-1 me-1">
                                                                     <i class="fas fa-edit iconsize"></i>
                                                                 </a>
 
                                                                 <form
-                                                                    action="{{ route('admin.slider.delete', ['id' => $item->id]) }}"
+                                                                    action="{{ route('admin.category.delete', ['id' => $category->id]) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     <!-- <input type="submit" value="Delete"> -->
@@ -219,14 +220,26 @@
                                                         <p>there is no users</p>
 
                                                     @endforelse
-
-
-
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-                                    
+
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-end me-2">
+                                            @if ($allCategories->previousPageUrl())
+                                                <a href="{{ $allCategories->previousPageUrl() }}"
+                                                    class="btn btn-primary mx-2 p-1"><i class="fas fa-hand-point-left"></i></a>
+                                            @endif
+
+                                            @if ($allCategories->nextPageUrl())
+                                                <a href="{{ $allCategories->nextPageUrl() }}"
+                                                    class="btn btn-primary mx-2 p-1"><i
+                                                        class="fas fa-hand-point-right "></i></a>
+                                            @endif
+
+                                        </div>
+                                    </div>
 
 
                                 </div>
@@ -245,22 +258,6 @@
         <script>
 
 
-
-
-
-            // document.getElementById('searchform').addEventListener('submit',function(e){
-            //     e.preventDefault();
-            //     let searchValue = e.target['search'].value ; 
-            //     let baseUrl = "{{ url()->current() }}"; // current route path without query
-
-            //     const url = new URL(baseUrl, window.location.origin);
-
-            //     console.log('kaj hosce..')
-            //     url.searchParams.set('search', searchValue);
-            //     window.location.href = url.toString();
-            // })
-
-
             const imageInput = document.getElementById('imageInput');
             const previewImage = document.getElementById('previewImage');
 
@@ -276,6 +273,12 @@
                     reader.readAsDataURL(file);
                 }
             })
+
+            ClassicEditor
+            .create(document.querySelector('#longDescription'))
+            .catch(error => {
+                console.error('CKEditor Error:', error);
+            });
         </script>
 
     @endpush

@@ -27,52 +27,44 @@ class CategoryController extends Controller
         }
         ;
 
-        return view('admin.service', compact('allCategories', 'editCategory'));
+        return view('admin.category', compact('allCategories', 'editCategory'));
     }
 
 
     public function store(Request $request, ?int $id = null)
     {
 
-        $request->validate([
+        $validateRules = [
             'name'=> 'required',
             'description' => 'required',
-            'img' => "required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048"
-        ]);
-
-
-        $data = $request->only(['description', 'name']);
+            'long_description' => 'required',
+        ];
+        
+        if($id == null || $request->hasFile('img')){
+            $validateRules['img'] = "required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048";
+        };
+        $request->validate($validateRules);
+        $data = $request->only(['description', 'name','long_description']);
         if ($id != null) {
             //
-
             $currentEditUser = Category::find($id);
-
             if ($request->hasFile('img')) {
-
                 //delete if user already have profile picture...
                 if ($currentEditUser->img != null) {
                     Storage::delete($currentEditUser->img);
                 }
-
-
-                $path = $request->file('img')->store('service');
+                $path = $request->file('img')->store('category');
                 $data['img'] = $path;
             }
-
             Category::where('id', '=', $id)->update($data);
-
-
              $backRoute =   route('admin.category');
            $backRoute = $backRoute."?page=".$request->page;
             
-            return redirect()->route('admin.category',['page'=>$request->query('page'),'search'=>$request->query('search')])->with("success", "Successfully Edit the user");
+            return redirect()->route('admin.category',['page'=>$request->query('page'),'search'=>$request->query('search')])->with("success", "Successfully Edited the user");
         }
 
-
-      
-
         if ($request->hasFile('img')) {
-            $path = $request->file('img')->store('service');
+            $path = $request->file('img')->store('category');
             $data['img'] = $path;
         }
         Category::create($data);

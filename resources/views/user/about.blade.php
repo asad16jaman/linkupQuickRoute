@@ -10,7 +10,7 @@
 @section('style')
     <style>
         .about-bg {
-            background-image: url('{{ asset('assets/user/img/heroImg/about.jpg') }}');
+            background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/heroImg/about.jpg') }}');
         }
 
         .expertise-img {
@@ -31,11 +31,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="breadcrumb-title">
-                        <h1>About Us</h1>
-                        <p>QIUCK route delivery company invests in its own fleet of car, motorcycle and drivers for fast
-                            delivery and better quality&nbsp;of&nbsp;service.
-                            Our employees are our assets, and we provide them with a safe working environment that ensures
-                            their satisfaction and security while doing&nbsp;their&nbsp;job.
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{ optional($hero)->description }}
                         </p>
                         <a href="{{ route('service') }}" class="main-btn primary">Our Services</a>
                     </div>

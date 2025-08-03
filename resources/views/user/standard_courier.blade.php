@@ -11,7 +11,7 @@
 <!-- Add the slick-theme.css if you want default styling -->
     <style>
         .standard_courier {
-            background-image: url('{{ asset('assets/user/img/team/standard_courier.jpg')}}');
+            background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img :  asset('assets/user/img/team/standard_courier.jpg')}}');
         }
     </style>
 @endsection
@@ -24,10 +24,9 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="breadcrumb-title">
-                        <h1>Standard Courier</h1>
-                        <p>Standard delivery services are just what they sound like. Their primary purpose is to ship normal
-                            packages in basically the same ways that the postal service does.</p>
-                        <a href="pricing.html" class="main-btn primary">Our Plan</a>
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{ optional($hero)->description }}</p>
+                        <a href="{{ route('pricing') }}" class="main-btn primary">Our Plan</a>
                     </div>
                 </div>
             </div>

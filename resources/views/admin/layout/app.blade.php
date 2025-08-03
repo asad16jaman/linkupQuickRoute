@@ -105,6 +105,7 @@
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="{{ asset('assets/admin/js/setting-demo.js') }}"></script>
     <script src="{{ asset('assets/admin/js/demo.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 
      @if(session()->exists('success') || session()->exists('info') || session()->exists('warning') || session()->exists('danger'))
 

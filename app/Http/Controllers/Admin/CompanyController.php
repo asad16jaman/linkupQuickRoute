@@ -21,6 +21,50 @@ class CompanyController extends Controller
     public function create(Request $request){
 
 
+        
+
+        $validationRules = [
+            'name' => 'required',
+            'email' => 'required|email',
+            'email2' => 'nullable|email',
+            'phone' => 'required|regex:/^01[3-9][0-9]{8}$/',
+            'phone2' => 'nullable|regex:/^01[3-9][0-9]{8}$/',
+            
+
+            'whatsapp' => [
+                'nullable',
+                'regex:/^(https?:\/\/)?(wa\.me|api\.whatsapp\.com)\/[A-Za-z0-9._%\/?=&-]+$/'
+            ],
+
+            'facebook' => [
+                'nullable',
+                'regex:/^(https?:\/\/)?(www\.)?(facebook\.com|fb\.com)\/[A-Za-z0-9._%\/?=&-]+$/'
+            ],
+
+            'instagram' => [
+                'nullable',
+                'regex:/^(https?:\/\/)?(www\.)?instagram\.com\/[A-Za-z0-9._%\/?=&-]+$/'
+            ],
+
+            'linkdin' => [
+                'nullable',
+                'regex:/^(https?:\/\/)?(www\.)?linkedin\.com\/[A-Za-z0-9._%\/?=&-]+$/'
+            ],
+
+            'map' => [
+                'required',
+                'regex:/^<iframe[^>]*src="https:\/\/www\.google\.com\/maps\/embed\?pb=[^"]+"[^>]*><\/iframe>$/'
+            ],
+
+            'address' => 'required',
+            'logo' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp,svg'
+        ];
+
+        
+
+        $request->validate($validationRules);
+
+
         $company = Company::all()->first();
 
         $companyData = $request->only(['name',
@@ -28,7 +72,6 @@ class CompanyController extends Controller
                 'email2',
                 'phone',
                 'phone2',
-                'footer_text',
                 'whatsapp',
                 'facebook',
                 'instagram',

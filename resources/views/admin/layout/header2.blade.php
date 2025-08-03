@@ -107,7 +107,7 @@
                             <h4>{{ auth()->user()->fullname ?? auth()->user()->username }}</h4>
                             <p class="text-muted">{{ auth()->user()->email }}</p>
                             <a
-                              href=""
+                              href="{{ route('admin.user.edit',['id'=>auth()->user()->id]) }}"
                               class="btn btn-xs btn-secondary btn-sm"
                               >View Profile</a
                             >
@@ -116,7 +116,7 @@
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="">My Profile</a>
+                        <a class="dropdown-item" href="{{ route('admin.user.edit',['id'=>auth()->user()->id]) }}">My Profile</a>
                         
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>

@@ -116,6 +116,7 @@
     <script src="{{ asset('assets/user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/user/lib/lightbox/js/lightbox.min.js') }}"></script>
     
+    
 
     <!-- Template Javascript -->
      <script src="{{ asset('assets/user/js/slick.js') }}"></script>

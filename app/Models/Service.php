@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Service extends Model
 {
     //
 
@@ -15,7 +15,7 @@ class Product extends Model
     }
 
     public function image(){
-        return $this->hasOne(ProductImage::class)->latest();
+        return $this->hasOne(ServiceImage::class)->latest();
     }
     
 }

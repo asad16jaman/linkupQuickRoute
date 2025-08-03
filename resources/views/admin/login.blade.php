@@ -48,7 +48,7 @@
         </button>
       </form>
 
-      <p class="text-center text-sm text-gray-400 mt-6">Copyright © 2025 {{ $company->name }}</p>
+      <p class="text-center text-sm text-gray-400 mt-6">Copyright © 2025 {{ optional($company)->name }}</p>
     </div>
   </div>
 

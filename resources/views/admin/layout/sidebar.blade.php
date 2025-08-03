@@ -29,7 +29,7 @@
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
 
-                <li class="nav-item {{ ($page=='home') ? 'active' : '' }}">
+                <li class="nav-item">
                 <a href="/admin">
                   <i class="fas fa-home"></i>
                    <p>Dashboard</p>
@@ -42,69 +42,15 @@
                  
                 </a>
               </li>
+
               <li class="nav-item {{ ($page=='service') ? 'active' : "" }}">
                 <a href="{{ route('admin.category') }}">
                   <i class="fas fa-concierge-bell"></i>
-                  <p>Service</p>
+                  <p>Category</p>
                  
                 </a>
               </li>
 
-              <li class="nav-item {{ ($page == 'project') ? 'active' : '' }}">
-                <a href="{{ route('admin.product') }}">
-                  <i class="fas fa-project-diagram"></i>
-                  <p>Project</p>
-                 
-                </a>
-              </li>
-              
-              <li class="nav-item {{ ($page == 'gallery') ? 'active' : "" }}">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                  <i class="fas fa-images"></i>
-                  <p>Gallery</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="sidebarLayouts">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="{{ route('admin.photogallery') }}">
-                        <span class="sub-item">Photo Gallery</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{{ route('admin.videogallery') }}">
-                        <span class="sub-item">Video Gallery</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              
-              <li class="nav-item {{ ($page == 'team') ? 'active' : "" }}">
-                <a href="{{ route('admin.team') }}">
-                  <i class="fas fa-users"></i>
-                  <p>Teams</p>
-                </a>
-              </li>
-
-              <li class="nav-item {{ ($page=='client') ? 'active' : ''}}">
-                <a href="{{ route('admin.client') }}">
-                  <i class="fas fa-handshake"></i>
-                  <p>Clients</p>
-                  <!-- <span class="badge badge-success">4</span> -->
-                </a>
-              </li>
-
-              @can('viewAny' ,Auth()->user()) 
-              <li class="nav-item {{ ($page=='user') ? 'active' : '' }}">
-                <a href="{{ route('admin.users') }}">
-                   <i class="fas fa-user-friends"></i>
-                  <p>Users</p>
-                  
-                </a>
-              </li>
-              @endcan
-              
               <li class="nav-item {{ ($page=='company') ? 'active' : '' }}">
                 <a href="{{ route('admin.company') }}">
                   <i class="fas fa-building"></i>
@@ -112,19 +58,13 @@
                   
                 </a>
               </li>
+              
               <li class="nav-item {{ ($page=='about') ? 'active' : '' }}">
                 <a href="{{ route('admin.about') }}">
                   <i class="fas fa-info-circle"></i>
                   <p>About Us</p>
                 </a>
               </li>
-              <li class="nav-item {{ ($page=='contact') ? 'active' : '' }}">
-                <a href="{{ route('admin.message') }}">
-                  <i class="fas fa-envelope"></i>
-                  <p>Contact</p>
-                </a>
-              </li>
-              
             </ul>
           </div>
         </div>

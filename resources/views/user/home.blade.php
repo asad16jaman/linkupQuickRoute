@@ -7,24 +7,15 @@
        
         <style>
                         .hero-area-bg-6 {
-                                        background-image: url('{{ asset('assets/user/img/heroImg/slide-6.jpg') }}');
+                                        background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/heroImg/slide-6.jpg')  }}');
                                         height: 700px;
                         }
-
+ 
                         .single-slide-item {
-                                        background-image: url('{{ asset('assets/user/img/heroImg/slide-6.jpg') }}');
-                                        background-size: cover;
-                                        background-position: center;
-                                        background-color: #ddd;
-                                        color: #fff;
-                                        width: 100%;
-                                        height: 700px;
-                                        position: relative;
-                                        z-index: 1;
-                                        display: flex !important;
-                                        align-items: center;
+                                        background-image: url('{{  $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/heroImg/slide-6.jpg') }}');
+                                        
                         }
-
+/*  */
                         .feature-area {
                                         background-image: url('{{ asset('assets/user/img/heroImg/feature-bg.jpg') }}');
                         }
@@ -43,6 +34,16 @@
                                         height: 50%;
                                         width: 100%;
                         }
+                        .about-content ul {
+                        list-style-type: disc;
+                        padding-left: 20px;
+                        margin-bottom: 1em;
+                        }
+                        .about-content li {
+                        margin-bottom: 5px;
+                        }
+
+                        
         </style>
 
 @endsection
@@ -62,14 +63,8 @@
                                                                         <div class="col-12 col-lg-7 wow fadeInUp animated" data-wow-delay=".2s">
                                                                                         <div class="hero-area-content">
                                                                                                         <div class="section-title">
-                                                                                                                        <h1>Pickup and Delivery</h1>
-                                                                                                                        <p>Your daily needs, everywhere Qatar , service we offer Pickup
-                                                                                                                                        and delivery
-                                                                                                                                        same
-                                                                                                                                        time, everywhere 24/7, why costumers love us, we never
-                                                                                                                                        broke costumer
-                                                                                                                                        promise,
-                                                                                                                                        join our family become a rider.</p>
+                                                                                                                        <h1>{{ optional($hero)->title }}</h1>
+                                                                                                                        <p>{{ optional($hero)->description }}</p>
                                                                                                         </div>
                                                                                                         <div class="slide-action">
                                                                                                                         <img src="{{ asset('assets/user/img/heroImg/1.png') }}" alt="">
@@ -89,22 +84,24 @@
                                         <div class="row gx-0">
                                                         <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                                                                         <div class="quick_contact">
-                                                                                        <div class="contact-icon"><i class="bi bi-telephone-plus-fill"></i></div>
+                                                                                        <div class="contact-icon"><i style="font-size:25px" class="bi bi-telephone-plus-fill"></i></div>
                                                                                         <div class="contact-body">
                                                                                                         <h6>Quick Contact </h6>
                                                                                                         <p>email: <a
-                                                                                                                                        href="mailto:info@ecofix.com">qiuckroutedelivery@gmail.com</a>
+                                                                                                                                        href="mailto:info@ecofix.com">{{ optional($company)->email }}</a>
                                                                                                         </p>
-                                                                                                        <p>phone: <a href="tel:992688272500">&#x202A;+97 430 882 665</a></p>
+                                                                                                        <p>phone: <a href="tel:992688272500">&#x202A;{{ optional($company)->phone }}</a></p>
                                                                                         </div>
                                                                         </div>
                                                         </div>
                                                         <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                                                                         <div class="quick_contact">
-                                                                                        <div class="contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                                                                                        <div class="contact-icon"><i  style="font-size:25px" class="bi bi-geo-alt-fill"></i></div>
                                                                                         <div class="contact-body">
                                                                                                         <h6>Our Location </h6>
-                                                                                                        <p>Al Muntazah Trading Centre Building, Doha <br> Qatar.</p>
+                                                                                                        <p>
+                                                                                                                {!! optional($company)->address !!}
+                                                                                                        </p>
 
                                                                                         </div>
                                                                         </div>
@@ -144,30 +141,16 @@
                                                                         <div class="info-content-area-2">
                                                                                         <div class="section-title">
                                                                                                         <p>You Know About Us!</p>
-                                                                                                        <h2>Qiuck route is the only company pickup and delivery all Qatar!</h2>
+                                                                                                        <h2>{{ optional($about)->title }}</h2>
                                                                                         </div>
-                                                                                        <p class="text-black"><b>QIUCK route delivery company invests in its own fleet
-                                                                                                                        of car,
-                                                                                                                        motorcycle and drivers for fast delivery and better
-                                                                                                                        quality&nbsp;of&nbsp;service.</b>
-                                                                                        </p>
-                                                                                        <p><b>Mission:</b><br>
-                                                                                                        To give people residing everywhere the complete accessible to all their
-                                                                                                        needs,
-                                                                                                        <br>
-                                                                                                        <b>Vision:</b><br>
-                                                                                                        To become number one go to with equal accessibility to
-                                                                                                        everyone&nbsp;everywhere
-                                                                                        </p>
-                                                                                        <br>
+                                                                                        <div class="about-content">
+                                                                                                {!! $about->description !!}
+                                                                                        </div>
 
                                                                                         <div class="signature-wrap">
                                                                                                         <a href="{{ route('about') }}" class="main-btn primary d-none d-md-block">Learn
                                                                                                                         More</a>
-                                                                                                        <div class="signature-body">
-                                                                                                                        <h6>Michael Brian</h6>
-                                                                                                                        <p>Managing Director</p>
-                                                                                                        </div>
+                                                                                                       
 
                                                                                         </div>
 
@@ -188,7 +171,7 @@
 
 
         <!-- Services Start -->
-        @include("user.home.service")
+        @include("user.home.category",compact(['categories']))
 
         <!-- Project Start -->
         <!-- include("user.home.project", ['projects' => $projects]) -->

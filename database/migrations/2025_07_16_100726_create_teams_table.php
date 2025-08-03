@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('department')->nullable();
             $table->string('linkedin_url')->nullable();
+             $table->string('tweter_url')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('instagram_url')->nullable();
             $table->text('bio')->nullable();

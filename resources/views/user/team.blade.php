@@ -11,7 +11,7 @@
 
 <style>
     .team-bg {
-            background-image: url('{{ asset('assets/user/img/team/team.jpg') }}');
+            background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/team/team.jpg') }}');
         }
 </style>
 
@@ -26,8 +26,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="breadcrumb-title">
-                        <h1>Qiuck Route Delivery Team</h1>
-                        <p>We delivery products Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse provident explicabo atque numquam enim debitis earum minus, perferendis sed ipsum.</p>
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{ optional($hero)->description }} </p>
                         <a href="services.html" class="main-btn primary">Our Services</a>						
                     </div>
                 </div>

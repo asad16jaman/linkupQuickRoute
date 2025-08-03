@@ -10,7 +10,7 @@
 @section('style')
     <style>
         .standard_courier {
-            background-image: url('{{ asset('assets/user/img/serviceIcon/overnight_courier.jpg')}}');
+            background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img :  asset('assets/user/img/serviceIcon/overnight_courier.jpg')}}');
         }
     </style>
 @endsection
@@ -23,8 +23,8 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="breadcrumb-title">
-                        <h1>Over Night Courier</h1>
-                        <p>As its name implies, the express delivery service is exclusively known for collecting and delivering parcels to destinations within a stipulated area on the same day. Their reliable delivery speed makes them ideal for organisations relying on private.</p>
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{ optional($hero)->description }}</p>
                         <a href="pricing.html" class="main-btn primary">Our Plan</a>
                     </div>
                 </div>

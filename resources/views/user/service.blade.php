@@ -10,7 +10,7 @@
 @section('style')
     <style>
         .about-bg{
-            background-image: url('{{ asset('assets/user/img/serviceIcon/services.jpg') }}');
+            background-image: url('{{  $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/serviceIcon/services.jpg') }}');
         }
     </style>
 @endsection
@@ -23,10 +23,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="breadcrumb-title">
-                        <h1>Services</h1>
-                        <p>QIUCK route delivery company invests in its own fleet of car, motorcycle and drivers for fast delivery and better quality of service.
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{  optional($hero)->description  }}
                         </p>
-                        <a href="services.html" class="main-btn primary">Our Plan</a>
+                        <a href="{{ route('service') }}" class="main-btn primary">Our Plan</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
         <div class="container">
             <ul class="breadcrumb d-flex">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                <li class="breadcrumb-item active" aria-current="page">Service</li>
             </ul>
         </div>
     </div>

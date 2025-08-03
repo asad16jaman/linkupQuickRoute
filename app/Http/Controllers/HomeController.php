@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Contact;
+use App\Models\Service;
 use App\Models\Team;
 use App\Models\About;
 use App\Models\Slider;
@@ -17,34 +18,33 @@ class HomeController extends Controller
 
     public function index(){
 
-        $carousels =Slider::all();
-        $about = About::all()->first();
-        $services = Category::all();
-        $projects = Product::with('image')->get();
+        $hero =Slider::where('pagename','=','home')->latest()->first();
+        $about = About::first();
+        $categories = Category::all();
+        $projects = Service::with('image')->get();
         $teams = Team::all();
         $clients = Client::all();
 
-        
-        
-        return view("user.home",compact(['carousels','about','services','projects','teams','clients']));
+        return view("user.home",compact(['hero','about','categories','projects','teams','clients']));
     }
 
     public function about(){
 
+        $hero = Slider::where('pagename','=','about')->latest()->first();
         $about = About::all()->first();
         $teams = Team::all();
 
-        return view('user.about',compact(['about','teams']));
+        return view('user.about',compact(['about','teams','hero']));
     }
 
     public function services(){
 
         
         $services = Category::all();
-        
+        $hero = Slider::where('pagename','=','service')->latest()->first();
         $clients = Client::all();
 
-        return view('user.service',compact(['services','clients']));
+        return view('user.service',compact(['services','clients','hero']));
     }
 
     public function project(){
@@ -55,8 +55,8 @@ class HomeController extends Controller
 
     public function contact(){
 
-
-        return view('user.contact');
+        $hero = Slider::where('pagename','=','contact')->latest()->first();
+        return view('user.contact',compact(['hero']));
     }
 
 
@@ -78,7 +78,9 @@ class HomeController extends Controller
     public function getTeam(){
 
         $teams = Team::all();
-        return view('user.team',compact(['teams']));
+        $hero = Slider::where('pagename','=','team')->latest()->first();
+       
+        return view('user.team',compact(['teams','hero']));
     }
 
     public function testimonial(){
@@ -89,26 +91,30 @@ class HomeController extends Controller
 
     public function fqaTemplate(){
 
-        return view('user.fqa');
+        $hero = Slider::where('pagename','=','faq')->latest()->first();
+        return view('user.fqa',compact(['hero']));
     }
 
     public function pricing(){
 
-        return view('user.pricing');
+        $hero = Slider::where('pagename','=','pricing')->latest()->first();
+        return view('user.pricing',compact(['hero']));
     }
 
 
     public function standard(){
-
-        return view('user.standard_courier');
+        $hero = Slider::where('pagename','=','standard')->latest()->first();
+        return view('user.standard_courier',compact(['hero']));
     }
 
     public function express(){
-        return view('user.express');
+         $hero = Slider::where('pagename','=','express')->latest()->first();
+        return view('user.express',compact(['hero']));
     }
     
     public function nightshift(){
-        return view('user.nightshift');
+        $hero =  Slider::where('pagename','=','overnight')->latest()->first();
+        return view('user.nightshift',compact(['hero']));
     }
 
 

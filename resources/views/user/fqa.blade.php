@@ -7,20 +7,41 @@
      @include('user.layout.navbar',['page'=>'page'])
 @endsection
 
+@section('style')
+    <style>
+         .team-bg {
+            background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/team/team.jpg') }}');
+        }
+    </style>
+@endsection
+
 @section('maincontent')
 
         <!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
-            <div class="bg-breadcrumb-single"></div>
-            <div class="container text-center py-5" style="max-width: 900px;">
-                <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our FAQs</h4>
-                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active text-primary">FAQs</li>
-                </ol>    
+        <div class="breadcrumb-area team-bg">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="breadcrumb-title">
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{ optional($hero)->description }} </p>
+                        <a href="services.html" class="main-btn primary">Our Services</a>						
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="breadcrumb-meta">
+        <div class="container">
+            <ul class="breadcrumb d-flex">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>        
+                <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+            </ul>
+        </div>
+    </div>
+
         <!-- Header End -->
 
        

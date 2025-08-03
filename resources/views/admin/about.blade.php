@@ -52,16 +52,15 @@
                     @csrf
                     <div class="card-body p-3 ">
                         <div class="row">
-
                             <div class="col-md-8 col-12">
-
-
                                 <div class="row mb-2">
-                                   
                                     <div class="col-md-12 col-12">
                                         <label for="email2">Title :</label>
-                                        <input type="text" class="form-control p-1" name="title" value="{{ $about ? $about->title : "" }}"
-                                            placeholder="Enter About Company">
+                                        <input type="text" class="form-control p-1 @error('title') is-invalid @enderror" name="title" value="{{ old('title',optional($about)->title) }}"
+                                            placeholder="Enter Title">
+                                        @error('title')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -77,15 +76,21 @@
                                     <!-- hidden input -->
                                     <input type="file" name="picture" id="imageInput" accept="image/*" style="display: none;">
                                 </div>
-
+                                <p>Image must be:jpg,jpeg,png.size:560px:710px</p>
+                                @error('picture')
+                                    <p class="text-danger text-center">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-2 mt-2">
                             <div class="col-md-12 col-12">
-                                <textarea class="form-control" name="about" placeholder="" rows="9">{{ $about ? $about->about : "" }}</textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="About of Company" rows="9">{!!  old('description',optional($about)->description)  !!}</textarea>
                             </div>
                         </div>
+                        @error('description')
+                            <p class="text-danger text-center">{{ $message }}</p>
+                        @enderror
 
                         <div class="d-flex justify-content-end">
                             <input type="submit" value="Submit" class="btn btn-primary me-3 p-2">
@@ -116,6 +121,14 @@
                     reader.readAsDataURL(file);
                 }
             })
+
+
+            ClassicEditor
+            .create(document.querySelector('#description'))
+            .catch(error => {
+                console.error('CKEditor Error:', error);
+            });
+
         </script>
 
     @endpush

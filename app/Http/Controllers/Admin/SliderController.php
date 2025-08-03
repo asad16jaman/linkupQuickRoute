@@ -18,34 +18,37 @@ class SliderController extends Controller
 
         $editSlider = null;
         if ($id != null) {
-            $editSlider = Slider::find($id);
+            $editSlider = Slider::findOrFail($id);
         }
 
-        $search = $request->input('search');
+        $search = $request->input('search',null);
         if ($search) {
-            $allSlider = Slider::where('title', 'like', '%' . $search . '%')->simplePaginate(10);
+            $allSlider = Slider::where('title', 'like', '%' . $search . '%')->orderBy('id','desc')->get();
         } else {
-            $allSlider = Slider::simplePaginate(3);
+            $allSlider = Slider::orderBy('id','desc')->get();
         }
+        
         return view("admin.slider", compact("editSlider", "allSlider"));
     }
 
     public function store(Request $request, ?int $id = null)
     {
 
-        $request->validate([
+        $validaterules = [
             "title"=> "required",
             "description"=> "required",
-            'img' => "required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048"
-        ]);
+            'pagename' => 'required'
+            
+        ];
+       
 
+        if($id == null || $request->hasFile('img')){
+            $validaterules['img'] = "required|image|mimes:jpeg,jpg,png,gif,webp,svg|dimensions:width=950,height=640";
+        };
 
+         $request->validate($validaterules);
 
-     
-
-
-
-        $data = $request->only(['title', 'description']);
+        $data = $request->only(['title', 'description','pagename']);
         if ($id != null) {
 
             $currentEditUser = Slider::find($id);
@@ -57,7 +60,7 @@ class SliderController extends Controller
                     Storage::delete($currentEditUser->img);
                 }
 
-                $path = $request->file('img')->store('slider');
+                $path = $request->file('img')->store('hero');
                 $data['img'] = $path;
             }
 
@@ -67,7 +70,7 @@ class SliderController extends Controller
 
 
         if ($request->hasFile('img')) {
-            $path = $request->file('img')->store('slider');
+            $path = $request->file('img')->store('hero');
             $data['img'] = $path;
         }
 
@@ -80,13 +83,13 @@ class SliderController extends Controller
     public function destroy(int $id)
     {
 
-        $slider = Slider::find($id);
-        if ($slider) {
+        $slider = Slider::findOrFail($id);
+        if ($slider->img) {
             //unlink image from directory....
             Storage::delete($slider->img);
-            $slider->delete();
+            
         }
-
+        $slider->delete();
         return redirect()->route('admin.slider')->with('success', 'Successfully Delete Slider Item');
 
     }

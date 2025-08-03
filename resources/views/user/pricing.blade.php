@@ -17,7 +17,7 @@
     
     }
     .team-bg {
-            background-image: url('{{ asset('assets/user/img/team/pricing.jpg') }}');
+            background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/team/pricing.jpg') }}');
         }
 </style>
 
@@ -31,8 +31,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="breadcrumb-title">
-                        <h1>Affordable Pricing</h1>
-                        <p>We delivery products Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse provident explicabo atque numquam enim debitis earum minus, perferendis sed ipsum.</p>
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{ optional($hero)->description }} </p>
                         					
                     </div>
                 </div>

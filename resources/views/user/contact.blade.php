@@ -7,20 +7,40 @@
      @include('user.layout.navbar',['page'=>'contact'])
 @endsection
 
+@section('style')
+    <style>
+         .team-bg {
+            background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/team/team.jpg') }}');
+        }
+    </style>
+@endsection
+
 @section('maincontent')
 
         <!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
-            <div class="bg-breadcrumb-single"></div>
-            <div class="container text-center py-5" style="max-width: 900px;">
-                <h4 class="text-white display-5 mb-4 wow fadeInDown" data-wow-delay="0.1s">Contact Us</h4>
-                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active text-primary">Contact</li>
-                </ol>    
+        <div class="breadcrumb-area team-bg">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="breadcrumb-title">
+                        <h1>{{ optional($hero)->title }}</h1>
+                        <p>{{ optional($hero)->description }} </p>
+                        <a href="services.html" class="main-btn primary">Our Services</a>						
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="breadcrumb-meta">
+        <div class="container">
+            <ul class="breadcrumb d-flex">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>        
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            </ul>
+        </div>
+    </div>
         <!-- Header End -->
 
 
@@ -39,21 +59,21 @@
                                 <div class="bg-primary btn-lg-square rounded-circle p-4"><i class="fa fa-home text-white"></i></div>
                                 <div class="ms-4">
                                     <h4>Addresses</h4>
-                                    <p class="mb-0">{{ $company->address }}</p>
+                                    <p class="mb-0">{{ optional($company)->address }}</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-4">
                                 <div class="bg-primary btn-lg-square rounded-circle p-2"><i class="fa fa-phone-alt text-white"></i></div>
                                 <div class="ms-4">
                                     <h4>Mobile</h4>
-                                    <p class="mb-0">{{ $company->phone }}</p>
+                                    <p class="mb-0">{{ optional($company)->phone }}</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-4">
                                 <div class="bg-primary btn-lg-square rounded-circle p-2"><i class="fa fa-envelope-open text-white"></i></div>
                                 <div class="ms-4">
                                     <h4>Email</h4>
-                                    <p class="mb-0">{{ $company->email }}</p>
+                                    <p class="mb-0">{{ optional($company)->email }}</p>
                                 </div>
                             </div>
                         </div>
@@ -113,13 +133,13 @@
                     </div>
                     <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="rounded h-100">
-                            {!! html_entity_decode($company->map) !!}
+                            {!! html_entity_decode(optional($company)->map) !!}
                             <div class="d-flex align-items-center justify-content-center bg-primary rounded-bottom p-4">
                                 <div class="d-flex">
-                                    <a class="btn btn-dark btn-lg-square rounded-circle me-2" href="{{ $company->facebook }}"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-dark btn-lg-square rounded-circle mx-2" href="{{ $company->whatsapp }}"><i class="fab fa-whatsapp"></i></a>
-                                    <a class="btn btn-dark btn-lg-square rounded-circle mx-2" href="{{ $company->instagram }}"><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-dark btn-lg-square rounded-circle mx-2" href="{{ $company->linkdin }}"><i class="fab fa-linkedin-in"></i></a>
+                                    <a class="btn btn-dark btn-lg-square rounded-circle me-2" href="{{ optional($company)->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-dark btn-lg-square rounded-circle mx-2" href="{{ optional($company)->whatsapp }}"><i class="fab fa-whatsapp"></i></a>
+                                    <a class="btn btn-dark btn-lg-square rounded-circle mx-2" href="{{ optional($company)->instagram }}"><i class="fab fa-instagram"></i></a>
+                                    <a class="btn btn-dark btn-lg-square rounded-circle mx-2" href="{{ optional($company)->linkdin }}"><i class="fab fa-linkedin-in"></i></a>
                                 </div>
                             </div>
                         </div>
