@@ -23,9 +23,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">Free Estimate</a></h4>
+          <h4><a href="">Free Estimate</a></h4>
           <p>Courier services will package according to customers' needs.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -40,9 +40,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">24/7 Services</a></h4>
+          <h4><a href="">24/7 Services</a></h4>
           <p>Shipments any day or time, even on weekends and holidays.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -57,9 +57,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">Flat Rate Fees</a></h4>
+          <h4><a href="">Flat Rate Fees</a></h4>
           <p>Parcel Charge depends on speedy delivery at a flexible price.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -74,9 +74,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">Fast Delivery</a></h4>
+          <h4><a href="">Fast Delivery</a></h4>
           <p>Specialty couriers are able to deliver items faster than other services.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -91,9 +91,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">Secured Service</a></h4>
+          <h4><a href="">Secured Service</a></h4>
           <p>Specialty couriers provide the highest level of security and tracking.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -108,9 +108,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">Well Disciplined</a></h4>
+          <h4><a href="">Well Disciplined</a></h4>
           <p>Delivery team trained to handle your product carefully and respectfully.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -125,9 +125,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">Customer Support</a></h4>
+          <h4><a href="">Customer Support</a></h4>
           <p>24/7 customer support to assist you with shipment tracking and queries.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
 
@@ -142,9 +142,9 @@
           </div>
         </div>
         <div class="service-content">
-          <h4><a href="{{ route('standard') }}">Live Tracking</a></h4>
+          <h4><a href="">Live Tracking</a></h4>
           <p>Track your courier in real time with our advanced GPS tracking system.</p>
-          <a class="main-btn primary" href="{{ route('standard') }}">Read More <i class="bi bi-arrow-right"></i></a>
+          <a class="main-btn primary" href="">Read More <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
     </div>

@@ -21,9 +21,9 @@ class CategoryController extends Controller
 
         $searchValue = $request->query("search", null);
         if ($searchValue != null) {
-            $allCategories = Category::where("name", "like", "%" . $searchValue . "%")->orderBy('id', 'desc')->simplePaginate(3);
+            $allCategories = Category::where("name", "like", "%" . $searchValue . "%")->orderBy('id', 'desc')->simplePaginate(10);
         } else {
-            $allCategories = Category::orderBy('id', 'desc')->simplePaginate(3);
+            $allCategories = Category::orderBy('id', 'desc')->simplePaginate(10);
         }
         ;
 
@@ -38,6 +38,7 @@ class CategoryController extends Controller
             'name'=> 'required',
             'description' => 'required',
             'long_description' => 'required',
+            'nav_name' => 'required|string|unique:categories,nav_name'
         ];
         
         if($id == null || $request->hasFile('img')){
@@ -66,22 +67,27 @@ class CategoryController extends Controller
         if ($request->hasFile('img')) {
             $path = $request->file('img')->store('category');
             $data['img'] = $path;
+            
         }
+        $data['nav_name'] = $request->input('nav_name');
         Category::create($data);
 
         return back()->with("success", "Successfully added the Category");
-
-
     }
 
     public function destroy(int $id)
     {
 
-        $data = Category::find($id);
+        $data = Category::findOrFail($id);
+
         if ($data) {
 
-            //unlink image from directory....
-            Storage::delete($data->img);
+            if($data->hasService()){
+                return redirect()->route('admin.category')->with('warning', 'This Category has detail First Delete that');
+            }
+           if($data->img){
+                Storage::delete($data->img);
+           }
             $data->delete();
         }
 

@@ -27,8 +27,6 @@ class PhotoGalleryController extends Controller
             $allgallery = PhotoGallery::orderBy('id', 'desc')->simplePaginate(3);
         }
         
-       
-
         return view('admin.photogallery', compact('allgallery', 'editgallery'));
     }
 
@@ -37,34 +35,29 @@ class PhotoGalleryController extends Controller
 
     public function store(Request $request, ?int $id = null)
     {
-        $request->validate([
+        $validateRules = [
             'title'=> 'required',
-            'description'=> 'required',
-            'img' => "required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:2048"
-        ]);
-
-        $data = $request->only(['title', 'description']);
-
+            'type'=> 'required',
+           
+        ] ;
+        if($id == null || $request->hasFile('img')){
+            $validateRules['img'] = "required|image|mimes:jpeg,jpg,png,gif,webp,svg";
+        }
+        $request->validate($validateRules);
+        $data = $request->only(['title', 'type']);
         if ($id != null) {
             //user edit section is hare
             $currentEditUser = PhotoGallery::find($id);
-
             if ($request->hasFile('img')) {
-
                 //delete if user already have profile picture...
                 if ($currentEditUser->img != null) {
                     Storage::delete($currentEditUser->img);
                 }
-
                 $path = $request->file('img')->store('photogallery');
                 $data['img'] = $path;
             }
-
             PhotoGallery::where('id', '=', $id)->update($data);
-
-
-            
-            return redirect()->route('admin.photogallery',['id'=>$id,'page'=>request()->query('page'),'search'=>request()->query('search')]);
+            return redirect()->route('admin.photogallery',['page'=>request()->query('page'),'search'=>request()->query('search')])->with("success", "Successfully Gallery Updated");
         }
 
 
@@ -74,7 +67,7 @@ class PhotoGalleryController extends Controller
             $data['img'] = $path;
         }
         PhotoGallery::create($data);
-        return back()->with("success", "Successfully added the Category");
+        return back()->with("success", "Successfully Gallery Added");
 
     }
 

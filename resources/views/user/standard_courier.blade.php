@@ -38,7 +38,7 @@
             <ul class="breadcrumb d-flex">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="services.html">Service</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Standard Courier</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $detailService->nav_name }}</li>
             </ul>
         </div>
     </div>
@@ -49,12 +49,13 @@
                     <div class="service-details_sidebar">
                         <div class="service-details_sidebar-service">
                             <ul class="service-details_sidebar-service-list list-unstyled">
-                                <li class="d-block current"><a href="{{ route('standard') }}">Standard Courier<span> <i
+                                @forelse($services as $service)
+                                    <li class="d-block {{ ($service->nav_name == $detailService->nav_name) ? 'current' : ''  }}"><a href="{{ route('user.service',['name'=>$service->nav_name]) }}">{{ $service->nav_name }}<span> <i
                                                 class="las la-long-arrow-alt-right"></i></span></a></li>
-                                <li class="d-block"><a href="{{ route('express') }}">Express Courier<span> <i
-                                                class="las la-long-arrow-alt-right"></i></span></a></li>
-                                <li class="d-block"><a href="{{ route('nightshift') }}">Overnight Courier<span> <i
-                                                class="las la-long-arrow-alt-right"></i></span></a></li>
+                                @empty
+
+                                @endforelse
+                                
                             </ul>
                         </div>
                         <div class="need_help_img">
@@ -76,29 +77,11 @@
                 <div class="col-xl-8 col-lg-7">
                     <div class="service-details_right">
                         <div class="service-details_img">
-                            <img src="{{ asset('assets/user/img/serviceIcon/standard_courier(1).jpg') }}" alt="">
+                            <img src="{{ optional($detailService->service)->picture ? asset('storage').'/'.$detailService->service->picture : asset('assets/user/img/serviceIcon/standard_courier(1).jpg') }}" alt="">
                         </div>
                         <div class="service-details_content">
                             <h3 class="service-details_title">Overview</h3>
-                            <p class="service-details_text-1">Standard delivery services are just what they sound like.
-                                Their primary purpose is to ship normal packages in basically the same ways that the postal
-                                service does.
-                            </p>
-                            <br>
-                            <p class="service-details_text-2">This courier service is the most used and cost-effective
-                                service to send parcels to any destination. It is common for delivery services to prioritise
-                                a package's weight over its size. Unlike expedited delivery services, these companies ensure
-                                that your packages arrive within two to three days from processing, making them more
-                                cost-effective than faster delivery services.</p>
-                            <ul class="list-unstyled service-list">
-                                <li>
-                                    <i class="las la-check"></i>Sending Regular-Sized Parcels
-                                </li>
-                                <li>
-                                    <i class="las la-check"></i>Parcels or suitcases up to 30kg
-                                </li>
-                                <li><i class="las la-check"></i>Basic shipping insurance</li>
-                            </ul>
+                            {!!  optional($detailService->service)->logn_description !!}
                         </div>
                          
                          
@@ -118,29 +101,20 @@
 
                         <div class="service-details_content">
                             <h3 class="service-details_title">Type of Service</h3>
-                            <p class="service-details_text-2">Standard courier shipping services follow a set guideline
-                                depending on where you live. Often, this means the package has to be under a certain weight
-                                to not incur extra charges. For the most part, the threshold for large packages is 50kg.
-                                Standard deliveries often take 2-3 days for your package to reach you. This is the best and
-                                cheapest way for you to get your package if you’re not in any rush. Standard delivery
-                                services also prioritize the weight of the package over its size.</p>
+                            <p class="service-details_text-2">{{ $detailService->description ?? '' }}</p>
                             <br>
                         </div>
                         <div class="service-details_img">
                             <img src="{{ asset('assets/user/img/serviceIcon/courier_service.jpg') }}" alt="">
                             <div class="pop-up-video">
-                                <a href="https://www.youtube.com/watch?v=yFwGpiCs3ss" class="video-play-btn mfp-iframe">
+                                <a href="{{ optional($detailService->service)->video }}" class="video-play-btn mfp-iframe">
                                     <i class="las la-play"></i> <span></span>
                                 </a>
                             </div>
                         </div>
                         <div class="service-details_content">
                             <h3 class="service-details_title">Conclusion</h3>
-                            <p class="service-details_text-2">This option is a good one if you know the weight of your
-                                expected package. If you’re uncertain though, then you may want to think of other options.
-                                They’ll surely offer a variety of delivery options, including some of the others on this
-                                list. Generally, though, most standard delivery services will transport packages by truck in
-                                2 or 3 days. </p>
+                            <p class="service-details_text-2">{{ optional($detailService->service)->description }}</p>
                             <br>
                         </div>
                     </div>

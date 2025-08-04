@@ -58,13 +58,10 @@
                         <div class="row">
 
                             <div class="col-md-8 col-12">
-
-
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
                                         <div class="">
                                             <label for="email2">Name :</label>
-
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
@@ -80,8 +77,23 @@
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
                                         <div class="">
-                                            <label for="description">Description :</label>
+                                            <label for="email2">Nav Name :</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-12">
+                                        <input type="text" class="form-control p-1 @error('nav_name') is-invalid
+                                        @enderror" name="nav_name" value="{{ old('nav_name', optional($editCategory)->name) }}"
+                                            placeholder="Enter Nav " {{ $editCategory ? 'readonly' : '' }}>
+                                        @error('nav_name')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
 
+                                <div class="row mb-2">
+                                    <div class="col-md-3 col-12">
+                                        <div class="">
+                                            <label for="description">Description :</label>
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
@@ -177,8 +189,10 @@
                                                     <tr role="row bg-dark">
                                                         <th style="width: 136.031px;">SL NO:</th>
                                                         <th style="width: 214.469px;">Picture</th>
+                                                        <th style="width: 214.469px;">NavName</th>
                                                         <th style="width: 214.469px;">Name</th>
                                                         <th style="width: 214.469px;">Description</th>
+                                                        <th style="width: 50.469px;">Detail</th>
                                                         <th style="width: 81.375px;">Action</th>
                                                     </tr>
                                                 </thead>
@@ -196,9 +210,12 @@
                                                                     alt="user profile picture">
 
                                                             </td>
+                                                            <td>{{ $category->nav_name }}</td>
                                                             <td>{{ $category->name }}</td>
                                                             <td>{{ substr($category->description, 0, 50) }}...</td>
-
+                                                            <td>
+                                                                <a href="{{ route('admin.service',['serviceName'=>$category->nav_name]) }}">Add</a>
+                                                            </td>
                                                             <td class="d-flex justify-content-center">
 
                                                                 <a href="{{  route('admin.category', ['id' => $category->id, 'page' => request()->query('page'), 'search' => request()->query('search')])  }}"

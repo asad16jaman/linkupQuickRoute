@@ -29,9 +29,14 @@
                             <div class="nav-item dropdown {{ ($page=='service') ? 'active' : "" }}">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                                 <div class="dropdown-menu m-0">
-                                    <a href="{{ route('standard') }}" class="dropdown-item">Standard Courier</a>
-                                    <a href="{{ route('express') }}" class="dropdown-item">Express Courier</a>
-                                    <a href="{{ route('nightshift') }}" class="dropdown-item">Over Night Courier</a>
+                                    @forelse($services as $service)
+                                        <a href="{{ route('user.service',['name'=>$service->nav_name]) }}" class="dropdown-item">{{ $service->nav_name }}</a>
+                                    @empty
+                                        <p>No Page Found</p>
+                                    @endforelse
+                                    
+                                    <!-- <a href="" class="dropdown-item">Express Courier</a>
+                                    <a href="" class="dropdown-item">Over Night Courier</a> -->
                                 </div>
                             </div>
                             <a href="{{ route('contact') }}" class="nav-item nav-link {{ ($page=='contact') ? 'active' : "" }}">Contact</a>

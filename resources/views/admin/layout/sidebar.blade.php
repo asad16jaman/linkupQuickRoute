@@ -43,11 +43,33 @@
                 </a>
               </li>
 
-              <li class="nav-item {{ ($page=='service') ? 'active' : "" }}">
+              <li class="nav-item {{ ($page=='category') ? 'active' : "" }}">
                 <a href="{{ route('admin.category') }}">
-                  <i class="fas fa-concierge-bell"></i>
-                  <p>Category</p>
+                  <i class="fas fa-project-diagram"></i>
+                  <p>Service</p>
                  
+                </a>
+              </li>
+
+              <li class="nav-item {{ ($page == 'project') ? 'active' : '' }}">
+                <a href="{{ route('admin.photogallery') }}">
+                   <i class="fas fa-images"></i>
+                  <p>Gallery</p>
+                 
+                </a>
+              </li>
+
+              <li class="nav-item {{ ($page == 'team') ? 'active' : "" }}">
+                <a href="{{ route('admin.team') }}">
+                  <i class="fas fa-users"></i>
+                  <p>Management</p>
+                </a>
+              </li>
+			  
+			        <li class="nav-item {{ ($page=='faq') ? 'active' : '' }}">
+                <a href="{{ route('admin.faq') }}">
+                  <i class="fas fa-question-circle"></i> 
+                  <p>Faq</p>
                 </a>
               </li>
 

@@ -43,7 +43,7 @@
         <!-- Hero End -->
 
         <!-- Services Start -->
-            @include("user.home.service")
+            @include("user.home.category" , ['categories' => $categories,'page' => 'service'])
         <!-- Services End -->
 
        <!-- Leader Service Section Start  -->

@@ -48,7 +48,7 @@
 
 
         <!-- FAQ Start -->
-             @include("user.home.fqa")
+             @include("user.home.fqa",compact('faqs'))
         <!-- FAQ End -->
 
      @endsection

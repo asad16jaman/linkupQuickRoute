@@ -155,7 +155,7 @@ hr {
 
 /*Section Padding CSS*/
 .section-padding {
-  padding: 120px 0;
+  padding: 50px 0;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -448,7 +448,7 @@ hr {
 /*Section Title */
 .section-title {
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .section-title {
@@ -467,11 +467,11 @@ hr {
 }
 
 .section-title h2 {
-  font-size: 55px;
-  font-weight: 700;
-  line-height: 65px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 50px;
   letter-spacing: -1px;
-  margin: 5px 0;
+  margin: 4px 0;
   color: #253745;
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {

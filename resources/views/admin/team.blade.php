@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="col-md-9 col-12">
                                         <input type="text" class="form-control p-1 @error('name') is-invalid
-                                        @enderror"  name="name" value="{{ $editTeam ? $editTeam->name : "" }}"
+                                        @enderror"  name="name" value="{{ old('name',optional($editTeam)->name)}}"
                                             placeholder="Enter Full Name">
                                         @error('name')
                                             <p class="text-danger">{{ $message }}</p>
@@ -73,24 +73,78 @@
                                     </div>
                                 </div>
 
-                                
+                                <div class="row mb-2">
+                                    <div class="col-md-3 col-12">
+                                        <div class="">
+                                            <label for="email2">Facebook :</label>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-12">
+                                        <input type="text" class="form-control p-1 @error('facebook_url') is-invalid
+                                        @enderror"  name="facebook_url" value="{{ old('facebook_url',optional($editTeam)->facebook_url)}}"
+                                            placeholder="Enter Facebook">
+                                        @error('facebook_url')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
                                         <div class="">
-                                            <label for="bio">Bio</label>
+                                            <label for="">Linkdin :</label>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <textarea class="form-control"  name="bio" placeholder="" id="comment" rows="3">{{ $editTeam ? $editTeam->bio : "" }}</textarea>
+                                        <input type="text" class="form-control p-1 @error('linkedin_url') is-invalid
+                                        @enderror"  name="linkedin_url" value="{{ old('linkedin_url',optional($editTeam)->linkedin_url)}}"
+                                            placeholder="Enter Linkdin">
+                                        @error('linkedin_url')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3 col-12">
+                                        <div class="">
+                                            <label for="email2">Tweter :</label>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-12">
+                                        <input type="text" class="form-control p-1 @error('tweter_url') is-invalid
+                                        @enderror"  name="tweter_url" value="{{ old('tweter_url',optional($editTeam)->tweter_url)}}"
+                                            placeholder="Enter Tweter">
+                                        @error('tweter_url')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 
-                                
+
                             </div>
 
                             <div class="col-md-6 col-12">
+
+                                <div class="row mb-2">
+                                    <div class="col-md-3 col-12">
+                                        <div class="">
+                                            <label for="email2">Instagram :</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-12">
+                                        <input type="text" class="form-control p-1 @error('instagram_url') is-invalid
+                                        @enderror"  name="instagram_url" value="{{ old('instagram_url',optional($editTeam)->instagram_url)}}"
+                                            placeholder="Enter Instagram">
+                                        @error('instagram_url')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
@@ -170,8 +224,6 @@
                                                         <th style="width: 214.469px;">Picture</th>
                                                         <th style="width: 214.469px;">Name</th>
                                                         <th style="width: 214.469px;">Designation</th>
-                                                        <th style="width: 214.469px;">Bio</th>
-                                            
                                                         <th style="width: 81.375px;">Action</th>
                                                     </tr>
                                                 </thead>
@@ -188,14 +240,10 @@
                                                         </td>
                                                         <td>{{ $team->name }}</td>
                                                         <td>{{ $team->designation }}</td>
-                                                        <td>{{ substr($team->bio,0,30) }}</td>
-                                                        
                                                         <td class="d-flex justify-content-center">
-                                                            
                                                             <a href="{{ route('admin.team',['id'=>$team->id,'page'=>request()->query('page'),'search'=>request()->query('search')]) }}" class="btn btn-info p-1 me-1">
                                                                 <i class="fas fa-edit iconsize"></i>
                                                             </a>
-
                                                             <form action="{{ route('admin.team.delete',['id' => $team->id]) }}" method="post">
                                                                 @csrf
                                                                 <!-- <input type="submit" value="Delete"> -->
@@ -223,61 +271,20 @@
                                                 <a href="{{ $allteam->nextPageUrl() }}" class="btn btn-primary mx-2 p-1"><i
                                                         class="fas fa-hand-point-right "></i></a>
                                             @endif
-
                                         </div>
                                     </div>
-                                    
-
-                                   
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
 @endsection
 
 @push('script')
 <script>
-    function perpageItem(d){
-        let itemNumber = d.value;
-        let baseUrl = "{{ url()->current() }}"; // current route path without query
-
-        const url = new URL(baseUrl, window.location.origin);
-        @foreach(request()->query() as $key => $value)
-            @if($key !== 'numberOfItem')
-                url.searchParams.set('{{ $key }}', '{{ $value }}');
-            @endif
-        @endforeach
-
-        url.searchParams.set('numberOfItem', itemNumber);
-        window.location.href = url.toString();
-    }
-
-
-   
-
-    document.getElementById('searchform').addEventListener('submit',function(e){
-        e.preventDefault();
-        let searchValue = e.target['search'].value ; 
-        let baseUrl = "{{ url()->current() }}"; // current route path without query
-
-        const url = new URL(baseUrl, window.location.origin);
-        @foreach(request()->query() as $key => $value)
-            @if($key !== 'search')
-                url.searchParams.set('{{ $key }}', '{{ $value }}');
-            @endif
-        @endforeach
-        console.log('kaj hosce..')
-        url.searchParams.set('search', searchValue);
-        window.location.href = url.toString();
-    })
-
-
+    
     const imageInput = document.getElementById('imageInput');
     const previewImage = document.getElementById('previewImage');
 

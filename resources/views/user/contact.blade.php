@@ -12,6 +12,26 @@
          .team-bg {
             background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/team/team.jpg') }}');
         }
+        .rounded iframe{
+            width: 100%;
+        } 
+
+         .contact-from {
+            background-color: var(--surface-color);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            padding: 30px;
+        }
+
+        .bg-breadcrumb {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ asset('assets/user/img/carousel-1.jpg') }});
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 20px 0 27px 0;
+        }
     </style>
 @endsection
 
@@ -45,10 +65,10 @@
 
 
         <!-- Contact Start -->
-        <div class="container-fluid contact bg-light py-5">
+        <div class="container-fluid contact py-5">
             <div class="container py-5">
                 <div class="row g-5">
-                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+                    <div class="col-lg-5 wow fadeInLeft" data-wow-delay="0.1s">
                         <div class="contact-item">
                             <div class="">
                                 <h4 class="text-primary">Contact Us</h4>
@@ -59,7 +79,7 @@
                                 <div class="bg-primary btn-lg-square rounded-circle p-4"><i class="fa fa-home text-white"></i></div>
                                 <div class="ms-4">
                                     <h4>Addresses</h4>
-                                    <p class="mb-0">{{ optional($company)->address }}</p>
+                                    <p class="mb-0">{!! optional($company)->address !!}</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center mb-4">
@@ -78,8 +98,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
-                        <form method="post" action="{{ route('contact.store') }}">
+                    <div class="col-lg-7 wow fadeInRight " data-wow-delay="0.3s">
+                        <form method="post" action="{{ route('contact.store') }}" class="contact-from">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-lg-12 col-xl-6">
@@ -150,7 +170,7 @@
         <!-- Contact End -->
 
         <!-- FAQ Start -->
-             @include("user.home.fqa")
+             <!-- include("user.home.fqa") -->
         <!-- FAQ End -->
 
      @endsection

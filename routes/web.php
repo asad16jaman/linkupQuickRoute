@@ -1,25 +1,26 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\VideoGalleryController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\CategoryController;
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\TeamController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\VideoGalleryController;
-
-use Illuminate\Support\Facades\Route;
 
 
 
 Route::get("/",[HomeController::class,"index"])->name("home");
-Route::get("/service",[HomeController::class,"services"])->name("service");
+Route::get("/services",[HomeController::class,"services"])->name("service");
 Route::get("/about",[HomeController::class,"about"])->name("about");
 Route::get("/project-detail",[HomeController::class,"project"])->name("project");
 Route::get("/contact",[HomeController::class,"contact"])->name("contact");
@@ -30,9 +31,7 @@ Route::get("/fqa",[HomeController::class,"fqaTemplate"])->name("fqa");
 Route::get("/pricing",[HomeController::class,"pricing"])->name("pricing");
 
 //service page
-Route::get("/standard",[HomeController::class,"standard"])->name("standard");
-Route::get("/express",[HomeController::class,"express"])->name("express");
-Route::get("/nightshift",[HomeController::class,"nightshift"])->name("nightshift");
+Route::get("/service/{name}",[HomeController::class,"service"])->name("user.service");
 
 
 Route::prefix('admin')->group(function(){
@@ -64,7 +63,6 @@ Route::group(['prefix'=> '/admin','as'=>'admin.'], function () {
     // Route::post("/users/{id}/edit",[UsersController::class,"editUserStore"])->name("user.edit");
 
     
-
     //slider maintaining url
     Route::get("/sliders/{id?}",[SliderController::class,"index"])->name("slider");
     Route::post("/sliders/{id?}",[SliderController::class,"store"])->name("slider");
@@ -72,37 +70,46 @@ Route::group(['prefix'=> '/admin','as'=>'admin.'], function () {
 
 
     //Service url hare
-    Route::get("/service/{id?}",[CategoryController::class,"index"])->name("category");
-    Route::post("/service/{id?}",[CategoryController::class,"store"])->name("category");
-    Route::post("/service/{id}/delete",[CategoryController::class,"destroy"])->name("category.delete");
+    Route::get("/category/{id?}",[CategoryController::class,"index"])->name("category");
+    Route::post("/category/{id?}",[CategoryController::class,"store"])->name("category");
+    Route::post("/category/{id}/delete",[CategoryController::class,"destroy"])->name("category.delete");
 
 
     // Product url hare
-    // Route::get("/product/{id?}",[ProductController::class,"index"])->name("product");
-    // Route::post("/product/{id?}",[ProductController::class,"store"])->name("product");
-    // Route::post("/product/{id}/delete",[ProductController::class,"destory"])->name("product.delete");
+    Route::get("/service/{id?}",[ServiceController::class,"index"])->name("service");
+    Route::post("/service/{id?}",[ServiceController::class,"store"])->name("service");
+    Route::post("/service/{id}/delete",[ServiceController::class,"destory"])->name("service.delete");
 
 
-    //Photo Gallery url hare
-    // Route::get("/photogallery/{id?}",[PhotoGalleryController::class,"index"])->name("photogallery");
-    // Route::post("/photogallery/{id?}",[PhotoGalleryController::class,"store"])->name("photogallery");
-    // Route::post("/photogallery/{id}/delete",[ProductController::class,"destory"])->name("photogallery.delete");
+    
 
     //Video Gallery url hare
     // Route::get("/videogallery/{id?}",[VideoGalleryController::class,"index"])->name("videogallery");
     // Route::post("/videogallery/{id?}",[VideoGalleryController::class,"store"])->name("videogallery");
     // Route::post("/videogallery/{id}/delete",[VideoGalleryController::class,"destory"])->name("videogallery.delete");
 
-    //team url hare
-    // Route::get('/teams/{id?}',[TeamController::class,'index'])->name('team');
-    // Route::post('/teams/{id?}',[TeamController::class,'store'])->name('team');
-    // Route::post('/teams/{id}/delete',[TeamController::class,'destroy'])->name('team.delete');
+    
 
 
     //client url hare
     // Route::get('/clients/{id?}',[ClientController::class,'index'])->name('client');
     // Route::post('/clients/{id?}',[ClientController::class,'store'])->name('client');
     // Route::post('/client/{id}/delete',[ClientController::class,'destroy'])->name('client.delete');
+
+    //team url hare
+    Route::get('/teams/{id?}',[TeamController::class,'index'])->name('team');
+    Route::post('/teams/{id?}',[TeamController::class,'store'])->name('team');
+    Route::post('/teams/{id}/delete',[TeamController::class,'destroy'])->name('team.delete');
+
+    //Photo Gallery url hare
+    Route::get("/photogallery/{id?}",[PhotoGalleryController::class,"index"])->name("photogallery");
+    Route::post("/photogallery/{id?}",[PhotoGalleryController::class,"store"])->name("photogallery");
+    Route::post("/photogallery/{id}/delete",[PhotoGalleryController::class,"destory"])->name("photogallery.delete");
+
+    // faq hare
+    Route::get('/faq',[FaqController::class,'index'])->name('faq');
+    Route::post('/faq',[FaqController::class,'store'])->name('faq');
+    Route::post('/faq/{id}/delete',[FaqController::class,'destroy'])->name('faq.delete');
 
     //about url hare
     Route::get('/about',[AboutController::class,'index'])->name('about');

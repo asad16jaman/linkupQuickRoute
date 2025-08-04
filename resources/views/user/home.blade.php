@@ -4,18 +4,18 @@
 @endsection
 
 @section('style')
-       
+
         <style>
                         .hero-area-bg-6 {
-                                        background-image: url('{{ $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/heroImg/slide-6.jpg')  }}');
+                                        background-image: url('{{ $hero ? asset('storage/') . '/' . $hero->img : asset('assets/user/img/heroImg/slide-6.jpg')  }}');
                                         height: 700px;
                         }
- 
+
                         .single-slide-item {
-                                        background-image: url('{{  $hero ? asset('storage/').'/'.$hero->img : asset('assets/user/img/heroImg/slide-6.jpg') }}');
-                                        
+                                        background-image: url('{{  $hero ? asset('storage/') . '/' . $hero->img : asset('assets/user/img/heroImg/slide-6.jpg') }}');
+
                         }
-/*  */
+
                         .feature-area {
                                         background-image: url('{{ asset('assets/user/img/heroImg/feature-bg.jpg') }}');
                         }
@@ -34,16 +34,16 @@
                                         height: 50%;
                                         width: 100%;
                         }
+
                         .about-content ul {
-                        list-style-type: disc;
-                        padding-left: 20px;
-                        margin-bottom: 1em;
-                        }
-                        .about-content li {
-                        margin-bottom: 5px;
+                                        list-style-type: disc;
+                                        padding-left: 20px;
+                                        margin-bottom: 1em;
                         }
 
-                        
+                        .about-content li {
+                                        margin-bottom: 5px;
+                        }
         </style>
 
 @endsection
@@ -84,23 +84,27 @@
                                         <div class="row gx-0">
                                                         <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                                                                         <div class="quick_contact">
-                                                                                        <div class="contact-icon"><i style="font-size:25px" class="bi bi-telephone-plus-fill"></i></div>
+                                                                                        <div class="contact-icon"><i style="font-size:25px"
+                                                                                                                        class="bi bi-telephone-plus-fill"></i></div>
                                                                                         <div class="contact-body">
                                                                                                         <h6>Quick Contact </h6>
                                                                                                         <p>email: <a
                                                                                                                                         href="mailto:info@ecofix.com">{{ optional($company)->email }}</a>
                                                                                                         </p>
-                                                                                                        <p>phone: <a href="tel:992688272500">&#x202A;{{ optional($company)->phone }}</a></p>
+                                                                                                        <p>phone: <a
+                                                                                                                                        href="tel:992688272500">&#x202A;{{ optional($company)->phone }}</a>
+                                                                                                        </p>
                                                                                         </div>
                                                                         </div>
                                                         </div>
                                                         <div class="col-xl-3 col-lg-3 col-md-6 col-12">
                                                                         <div class="quick_contact">
-                                                                                        <div class="contact-icon"><i  style="font-size:25px" class="bi bi-geo-alt-fill"></i></div>
+                                                                                        <div class="contact-icon"><i style="font-size:25px"
+                                                                                                                        class="bi bi-geo-alt-fill"></i></div>
                                                                                         <div class="contact-body">
                                                                                                         <h6>Our Location </h6>
                                                                                                         <p>
-                                                                                                                {!! optional($company)->address !!}
+                                                                                                                        {!! optional($company)->address !!}
                                                                                                         </p>
 
                                                                                         </div>
@@ -144,13 +148,14 @@
                                                                                                         <h2>{{ optional($about)->title }}</h2>
                                                                                         </div>
                                                                                         <div class="about-content">
-                                                                                                {!! $about->description !!}
+                                                                                                        {!! $about->description !!}
                                                                                         </div>
 
                                                                                         <div class="signature-wrap">
-                                                                                                        <a href="{{ route('about') }}" class="main-btn primary d-none d-md-block">Learn
+                                                                                                        <a href="{{ route('about') }}"
+                                                                                                                        class="main-btn primary d-none d-md-block">Learn
                                                                                                                         More</a>
-                                                                                                       
+
 
                                                                                         </div>
 
@@ -171,110 +176,61 @@
 
 
         <!-- Services Start -->
-        @include("user.home.category",compact(['categories']))
+        @include("user.home.category", ['categories' => $categories, 'page' => 'home'])
+
+
+        <!-- Feature Section Start -->
+        @include("user.home.feature")
+        <!-- Feature Section end  -->
 
         <!-- Project Start -->
-        <!-- include("user.home.project", ['projects' => $projects]) -->
 
-        <div class="project-area section-padding pt-100 pb-100">
-                        <div class="container">
-                                        <div class="project-list mt-10">
-                                                        <div class="row mt-30">
-                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                                                        <div class="project-bg">
-                                                                                                                        <img src="{{ asset('assets/user/img/heroImg/1-1.jpg')}}" alt="">
-                                                                                                        </div>
-                                                                                                        <div class="project-details">
-                                                                                                                        <h5>Standard Courier</h5>
-                                                                                                                        <span>Road Freight</span>
-                                                                                                        </div>
-                                                                                        </a>
-                                                                        </div>
-
-                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                                                        <div class="project-bg">
-                                                                                                                        <img src="{{ asset('assets/user/img/heroImg/1-2.jpg')}}" alt="">
-                                                                                                        </div>
-                                                                                                        <div class="project-details">
-                                                                                                                        <h5>Express Courier</h5>
-                                                                                                                        <span>Sea Freight</span>
-                                                                                                        </div>
-                                                                                        </a>
-                                                                        </div>
-
-                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                                                        <div class="project-bg">
-                                                                                                                        <img src="{{ asset('assets/user/img/heroImg/1-3.jpg')}}" alt="">
-                                                                                                        </div>
-                                                                                                        <div class="project-details">
-                                                                                                                        <h5>International Courier</h5>
-                                                                                                                        <span>Air Freight</span>
-                                                                                                        </div>
-                                                                                        </a>
-                                                                        </div>
-
-                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                                                        <div class="project-bg">
-                                                                                                                        <img src="{{ asset('assets/user/img/heroImg/1-5.jpg')}}" alt="">
-                                                                                                        </div>
-                                                                                                        <div class="project-details">
-                                                                                                                        <h5>Warehousing</h5>
-                                                                                                                        <span>Rail Freight</span>
-                                                                                                        </div>
-                                                                                        </a>
-                                                                        </div>
-                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                                                        <div class="project-bg">
-                                                                                                                        <img src="{{ asset('assets/user/img/heroImg/1-6.jpg')}}" alt="">
-                                                                                                        </div>
-                                                                                                        <div class="project-details">
-                                                                                                                        <h5>Pallet Courier</h5>
-                                                                                                                        <span>Rail Freight</span>
-                                                                                                        </div>
-                                                                                        </a>
-                                                                        </div>
-                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
-                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                                                        <div class="project-bg">
-                                                                                                                        <img src="{{ asset('assets/user/img/heroImg/1-7.jpg')}}" alt="">
-                                                                                                        </div>
-                                                                                                        <div class="project-details">
-                                                                                                                        <h5>Same Day Courier</h5>
-                                                                                                                        <span>Road Freight</span>
-                                                                                                        </div>
-                                                                                        </a>
-                                                                        </div>
-                                                        </div>
-                                        </div>
+        <div class="project-area section-padding pt-30 pb-30">
+                <div class="container">
+                        <div class="row">
+                                <h3 class="text-center pb-20">Gallery</h3>
                         </div>
+                        <div class="project-list mt-10">
+                                <div class="row mt-30">
+                                        @forelse($galleries as $gallery)
+
+                                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
+                                                                <div class="project-bg">
+                                                                        <img src="{{ $gallery->img ? asset('storage').'/'.$gallery->img : asset('assets/user/img/heroImg/1-1.jpg') }}" alt="">
+                                                                </div>
+                                                                <div class="project-details">
+                                                                        <h5>{{ $gallery->title }}</h5>
+                                                                        <span>{{ $gallery->type }}</span>
+                                                                </div>
+                                                        </a>
+                                                </div>
+
+                                        @empty
+                                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
+                                                                <div class="project-bg">
+                                                                        <img src="{{ asset('assets/user/img/heroImg/1-1.jpg')}}" alt="">
+                                                                </div>
+                                                                <div class="project-details">
+                                                                        <h5>Standard Courier</h5>
+                                                                        <span>Road Freight</span>
+                                                                </div>
+                                                        </a>
+                                                </div>
+                                        @endforelse
+                                        
+                                                                        
+                                 </div>
+                        </div>
+                </div>
         </div>
 
         <!-- Project End -->
 
 
-        <!-- Feature Section Start -->
-                @include("user.home.feature")
-        <!-- Feature Section end  -->
-
-
-
-        <!-- Team Start -->
-        <!-- include("user.home.team", ['teams' => $teams]) -->
-        <!-- Team End -->
-
-
-        <!-- Testimonial Start -->
-        @include("user.home.client", compact(['clients']))
-        <!-- Testimonial End -->
-
-
         <!-- Experiance Start -->
-         @include("user.home.expertis")
+                 @include("user.home.expertis")
         <!-- Experiance End -->
 
         <!-- article section start -->
@@ -408,13 +364,3 @@
 
 @endsection
 
-
-@push('script')
-
-        <script>
-                       
-                      
-                       
-        </script>
-
-@endpush

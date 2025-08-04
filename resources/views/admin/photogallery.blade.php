@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-md-9 col-12">
                                         <input type="text" class="form-control p-1 @error('title') is-invalid
-                                        @enderror"  name="title" value="{{ $editgallery ? $editgallery->title :"" }}"
+                                        @enderror"  name="title" value="{{ old('title',optional($editgallery)->title)  }}"
                                             placeholder="Enter Full Name">
                                         @error('title')
                                             <p class="text-danger">{{ $message }}</p>
@@ -74,15 +74,15 @@
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
                                         <div class="">
-                                            <label for="description">Description :</label>
+                                            <label for="description">Type :</label>
                                             
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
-                                        <textarea class="form-control @error('description') is-invalid
-                                        @enderror" name="description" placeholder="" id="comment" rows="3">{{ $editgallery ? $editgallery->description : '' }}</textarea>
-
-                                         @error('description')
+                                        <input type="text" class="form-control p-1 @error('type') is-invalid
+                                        @enderror"  name="type" value="{{ old('type',optional($editgallery)->type)  }}"
+                                            placeholder="Enter Type">
+                                        @error('type')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -138,7 +138,7 @@
                                                 <label class="d-flex justify-content-end">Search:
                                                     <form>
                                                       
-                                                        <input type="search" value="{{ request()->query('search') }}" name="search" class="form-control form-control-sm"
+                                                        <input type="search"  name="search" class="form-control form-control-sm"
                                                             placeholder="" aria-controls="basic-datatables">
                                                     </form>
                                                 </label>
@@ -155,7 +155,7 @@
                                                         <th style="width: 136.031px;">SL NO:</th>
                                                         <th style="width: 214.469px;">Image</th>
                                                         <th style="width: 214.469px;">Title</th>
-                                                        <th style="width: 214.469px;">Description</th>
+                                                        <th style="width: 214.469px;">Type</th>
                                                         <th style="width: 81.375px;">Action</th>
                                                     </tr>
                                                 </thead>
@@ -170,7 +170,7 @@
                                                       
                                                         </td>
                                                         <td>{{ $gallery->title }}</td>
-                                                        <td>{{ substr($gallery->description,0,50) }}...</td>
+                                                        <td>{{ $gallery->type }}</td>
                                                         
                                                         <td class="d-flex justify-content-center">
                                                             
@@ -195,7 +195,8 @@
                                     </div>
 
                                      <div class="row">
-                                        <div class="col-12 d-flex justify-content-end me-2">
+
+                                     <div class="col-12 d-flex justify-content-end me-2">
                                             @if ($allgallery->previousPageUrl())
                                                 <a href="{{ $allgallery->previousPageUrl() }}"
                                                     class="btn btn-primary mx-2 p-1"><i class="fas fa-hand-point-left"></i></a>
@@ -207,6 +208,7 @@
                                             @endif
 
                                         </div>
+                                        
                                     </div>
 
                                    
@@ -224,41 +226,7 @@
 
 @push('script')
 <script>
-    function perpageItem(d){
-        let itemNumber = d.value;
-        let baseUrl = "{{ url()->current() }}"; // current route path without query
-
-        const url = new URL(baseUrl, window.location.origin);
-        @foreach(request()->query() as $key => $value)
-            @if($key !== 'numberOfItem')
-                url.searchParams.set('{{ $key }}', '{{ $value }}');
-            @endif
-        @endforeach
-
-        url.searchParams.set('numberOfItem', itemNumber);
-        window.location.href = url.toString();
-    }
-
-
-   
-
-    document.getElementById('searchform').addEventListener('submit',function(e){
-        e.preventDefault();
-        let searchValue = e.target['search'].value ; 
-        let baseUrl = "{{ url()->current() }}"; // current route path without query
-
-        const url = new URL(baseUrl, window.location.origin);
-        @foreach(request()->query() as $key => $value)
-            @if($key !== 'search')
-                url.searchParams.set('{{ $key }}', '{{ $value }}');
-            @endif
-        @endforeach
-        console.log('kaj hosce..')
-        url.searchParams.set('search', searchValue);
-        window.location.href = url.toString();
-    })
-
-
+    
     const imageInput = document.getElementById('imageInput');
     const previewImage = document.getElementById('previewImage');
 
@@ -266,11 +234,9 @@
         const file = this.files[0];
         if (file) {
             const reader = new FileReader();
-
             reader.onload = function (e) {
                 previewImage.src = e.target.result;
             };
-
             reader.readAsDataURL(file);
         }
     })

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Contact;
+use App\Models\Faq;
+use App\Models\PhotoGallery;
 use App\Models\Service;
 use App\Models\Team;
 use App\Models\About;
@@ -22,29 +24,29 @@ class HomeController extends Controller
         $about = About::first();
         $categories = Category::all();
         $projects = Service::with('image')->get();
-        $teams = Team::all();
+        $galleries = PhotoGallery::all();
         $clients = Client::all();
 
-        return view("user.home",compact(['hero','about','categories','projects','teams','clients']));
+        return view("user.home",compact(['hero','about','categories','projects','galleries','clients']));
     }
 
     public function about(){
 
         $hero = Slider::where('pagename','=','about')->latest()->first();
         $about = About::all()->first();
-        $teams = Team::all();
-
+        $teams = Team::take(4)->get();
+        
         return view('user.about',compact(['about','teams','hero']));
     }
 
     public function services(){
 
         
-        $services = Category::all();
+        $categories = Category::all();
         $hero = Slider::where('pagename','=','service')->latest()->first();
         $clients = Client::all();
 
-        return view('user.service',compact(['services','clients','hero']));
+        return view('user.service',compact(['hero','clients','categories']));
     }
 
     public function project(){
@@ -55,7 +57,9 @@ class HomeController extends Controller
 
     public function contact(){
 
+        
         $hero = Slider::where('pagename','=','contact')->latest()->first();
+
         return view('user.contact',compact(['hero']));
     }
 
@@ -92,7 +96,8 @@ class HomeController extends Controller
     public function fqaTemplate(){
 
         $hero = Slider::where('pagename','=','faq')->latest()->first();
-        return view('user.fqa',compact(['hero']));
+        $faqs = Faq::all();
+        return view('user.fqa',compact(['hero','faqs']));
     }
 
     public function pricing(){
@@ -102,20 +107,28 @@ class HomeController extends Controller
     }
 
 
-    public function standard(){
+    public function service(string $name){
+
+
         $hero = Slider::where('pagename','=','standard')->latest()->first();
-        return view('user.standard_courier',compact(['hero']));
+
+
+        // $service = Service::with('categoryDetail')->where('nav_name','=', $name)->first();
+        $detailService = Category::with('service')->where('nav_name','=',$name)->latest()->first();
+
+        
+        return view('user.standard_courier',compact(['hero','detailService']));
     }
 
-    public function express(){
-         $hero = Slider::where('pagename','=','express')->latest()->first();
-        return view('user.express',compact(['hero']));
-    }
+    // public function express(){
+    //      $hero = Slider::where('pagename','=','express')->latest()->first();
+    //     return view('user.express',compact(['hero']));
+    // }
     
-    public function nightshift(){
-        $hero =  Slider::where('pagename','=','overnight')->latest()->first();
-        return view('user.nightshift',compact(['hero']));
-    }
+    // public function nightshift(){
+    //     $hero =  Slider::where('pagename','=','overnight')->latest()->first();
+    //     return view('user.nightshift',compact(['hero']));
+    // }
 
 
 }

@@ -75,7 +75,7 @@
 
             <div class="card mb-1">
                 <div class="card-header pt-1 pb-0">
-                    <h4 class="text-center">Create Project</h4>
+                    <h4 class="text-center">Store Or Edit Service Detail</h4>
                 </div>
                 <form method="post" id="productForm" enctype="multipart/form-data">
                     @csrf
@@ -105,8 +105,7 @@
                                 <div class="row mb-2">
                                     <div class="col-md-3 col-12">
                                         <div class="">
-                                            <label for="description">Discription :</label>
-                                            
+                                            <label for="description">Conclution :</label>
                                         </div>
                                     </div>
                                     <div class="col-md-9 col-12">
@@ -119,14 +118,9 @@
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-md-3 col-12">
-                                        <div class="">
-                                            <label for="long_Description">Long Discription :</label>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9 col-12">
-                                        <textarea name="logn_description" class="form-control" rows="4" id="">{{ $editItem ? $editItem->logn_description : "" }}</textarea>
+                                    
+                                    <div class="col-md-12 col-12">
+                                        <textarea name="logn_description" placeholder="Type Over View" class="form-control" rows="4" id="longDescription">{{ $editItem ? $editItem->logn_description : "" }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -140,17 +134,14 @@
                                     </div>
                                     <div class="col-md-9 col-12">
                                         <select name="category_id" id="" class="form-control">
-                                            <!-- <option value="1">dkslk</option>
-                                            <option value="1">dkslk</option> -->
-                                            
                                             @if($editItem != null)
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}" @selected($editItem->category->id == $category->id) >{{ $category->name }}</option>
+                                                        <option value="{{ $category->id }}" @selected($editItem->category->id == $category->id) >{{ $category->nav_name }}</option>
                                                     @endforeach
                                             @else
 
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}"  @selected(request('serviceName') == $category->nav_name)>{{ $category->nav_name }}</option>
                                                 @endforeach
 
                                             @endif
@@ -158,27 +149,23 @@
                                         </select>
                                     </div>
                                 </div>
-                               
-                                <!-- multiple picture upload field hare start -->
-                                <!-- <div class="row">
-                                    
-                                        <div class="col-md-3 col-12">
-                                            <div class="">
-                                                <label for="email2">Service Image </label>
-                                                
-                                            </div>
+                                 <div class="row mb-2">
+                                    <div class="col-md-3 col-12">
+                                        <div class="">
+                                            <label for="email2">Youtube Link :</label>
+                                            
                                         </div>
-                                        <div class="col-md-9 col-12">
-                                           <input type="file" name="img[]" id="productImages" class="form-control" multiple accept="image/*">
-                                        </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 mt-3">
-                                        <div class="productimages d-flex flex-wrap gap-2"></div>
                                     </div>
-                                </div> -->
-
-                                 <!-- multiple picture upload field hare end -->
+                                    <div class="col-md-9 col-12">
+                                        <input type="text" class="form-control p-1 @error('video') is-invalid
+                                        @enderror"  name="video" value="{{ old('video',optional($editItem)->video) }}"
+                                            placeholder="Enter Product Name">
+                                        @error('video')
+                                            <p class="text-danger">{{  $message }}</p>
+                                        @enderror
+                                        
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-md-12 col-12 d-flex justify-content-center mt-1">
@@ -241,11 +228,10 @@
                                                     <tr role="row bg-dark" >
                                                         <th style="width: 136.031px;">SL NO:</th>
                                                         <th style="width: 35.875px;">Image</th>
-                                                        <th style="width: 214.469px;">Name</th>
-                                                        <th style="width: 214.469px;">Description</th>
-                                                        <th style="width: 214.469px;">Long Des.</th>
-                                                        <th style="width: 101.219px;">Category</th>
-                                                        
+                                                        <th style="width: 170.469px;">Name</th>
+                                                        <th style="width: 360.469px;">Description</th>
+                                                        <th style="width: 101.219px;">Slider</th>
+                                                        <th style="width: 100.469px;">Category</th>
                                                         <th style="width: 81.375px;">Action</th>
                                                     </tr>
                                                 </thead>
@@ -262,17 +248,19 @@
                                                         </td>
                                                         <td>{{ $product->name }}</td>
                                                         <td>{{ substr($product->description,0,50) }}...</td>
-                                                        <td>{{ substr($product->logn_description,0,50) }}...</td>
+                                                        <td>
+                                                            <a href="">Create</a>
+                                                        </td>
                                                         
-                                                        <td>{{ $product->category->name }}</td>
+                                                        <td>{{ $product->category->nav_name }}</td>
                                                         
                                                         <td class="d-flex justify-content-center">
                                                             
-                                                            <a href="{{ route('admin.product',['id'=> $product->id,'page'=>request()->query('page'),'search'=>request()->query('search')]) }}" class="btn btn-info p-1 me-1">
+                                                            <a href="{{ route('admin.service',['id'=> $product->id,'page'=>request()->query('page'),'search'=>request()->query('search')]) }}" class="btn btn-info p-1 me-1">
                                                                 <i class="fas fa-edit iconsize"></i>
                                                             </a>
 
-                                                            <form action="{{ route('admin.product.delete',['id'=>$product->id]) }}" method="post">
+                                                            <form action="{{ route('admin.service.delete',['id'=>$product->id]) }}" method="post">
                                                                 @csrf
                                                                 <!-- <input type="submit" value="Delete"> -->
                                                                  <button type="submit" class="btn btn-danger p-1"><i class="fas fa-trash-alt iconsize"></i></button>
@@ -339,6 +327,12 @@
             reader.readAsDataURL(file);
         }
     })
+
+    ClassicEditor
+            .create(document.querySelector('#longDescription'))
+            .catch(error => {
+                console.error('CKEditor Error:', error);
+            });
 
    
     //handle product multiple image start hare........................................
