@@ -107,8 +107,10 @@
                         <div class="service-details_img">
                             <img src="{{ asset('assets/user/img/serviceIcon/courier_service.jpg') }}" alt="">
                             <div class="pop-up-video">
-                                <a href="{{ optional($detailService->service)->video }}" class="video-play-btn mfp-iframe">
-                                    <i class="las la-play"></i> <span></span>
+                                <a href="{{ optional($detailService->service)->video }}" class="video-play-btn mfp-iframe d-flex align-items-center justify-content-center">
+                                     <span>
+                                        <i class="fas fa-play" style="font-size:20px"></i>
+                                     </span>
                                 </a>
                             </div>
                         </div>

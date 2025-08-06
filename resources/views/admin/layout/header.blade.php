@@ -66,26 +66,19 @@
                     aria-expanded="false"
                   >
                     <div class="avatar-sm">
-                  
                     @if(auth()->user()->picture != null)
-
                     <img
                         src="{{ asset('storage/'.auth()->user()->picture) }}"
                         alt="..."
                         class="avatar-img rounded-circle"
                       />
-
                     @else
                       <img
                         src="{{asset('assets/admin/img/demoProfile.png')  }}"
                         alt="..."
                         class="avatar-img rounded-circle"
                       />
-
-
                     @endif
-
-                      
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
@@ -107,7 +100,7 @@
                             <h4>{{ auth()->user()->fullname ?? auth()->user()->username }}</h4>
                             <p class="text-muted">{{ auth()->user()->email }}</p>
                             <a
-                              href=""
+                              href="{{ route('admin.user.edit',['id'=>auth()->user()->id]) }}"
                               class="btn btn-xs btn-secondary btn-sm"
                               >View Profile</a
                             >
@@ -116,10 +109,9 @@
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="">My Profile</a>
+                        <a class="dropdown-item" href="{{ route('admin.user.edit',['id'=>auth()->user()->id]) }}">My Profile</a>
                         
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Account Setting</a>
+                        
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
                       </li>

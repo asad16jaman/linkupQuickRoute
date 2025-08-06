@@ -56,12 +56,12 @@ class AboutController extends Controller
             $data['picture'] = $path;
         }
         About::create($data);
-        return back()->with("success", "Successfully added the About");
+        return back()->with("success", "Successfully created About");
 
     }
 
 
-    public function destroy(){}
+    
 
 
 

@@ -47,8 +47,8 @@
         <!-- Services End -->
 
        <!-- Leader Service Section Start  -->
-    @include("user.home.leaderservice")
-    <!-- Leader Service Section End -->
+        @include("user.home.leaderservice",compact('delivery'))
+        <!-- Leader Service Section End -->
 
         <!-- Testimonial Start -->
              @include("user.home.client",compact(['clients']))

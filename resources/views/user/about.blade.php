@@ -57,7 +57,7 @@
                 <div class="col-xl-5 col-lg-5">
                     <div class="about-img wow fadeInRight  animated" data-wow-delay="100ms"
                         style="visibility: visible; animation-delay: 100ms; animation-name: fadeInRight;">
-                        <img src="{{ asset('assets/user/img/about/1.jpg')}}" alt="">
+                        <img src="{{ $about->picture ? asset('storage').'/'.$about->picture : asset('assets/user/img/heroImg/3.jpg')}}" alt="">
                         <div class="about-counter wow fadeInLeft" data-wow-delay="400ms"
                             style="visibility: visible; animation-delay: 400ms; animation-name: fadeInLeft;">
                             <div class="counter-icon">
@@ -79,39 +79,11 @@
                             </h2>
                         </div>
                         <div class="about-content">
-                            <div class="row">
-                                <div class="col-12 col-lg-7">
-                                    <div class="about-content-left">
-                                        <p class="highlight mb-30">
-                                            We provide the trustworthy to deliver any packages with our latest
-                                            technologies, also provide secured &amp; on time service!
-                                        </p>
-                                        <p>
-                                            Courier companies and delivery agency stay on the ground and do most of the
-                                            authority to ensure that customers get their orders on time, is greatly
-                                            dependent on the kind of courier company.
-                                        </p>
 
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-5">
-                                    <div class="about-content-right">
-                                        <p>
-                                            What service Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias,
-                                            fugiat!?
-                                        </p>
-                                        <ul class="list-unstyled feature-list mt-30">
-                                            <li>
-                                                <i class="las la-check"></i>Reliability and
-                                                Trustworthy
-                                            </li>
-                                            <li>
-                                                <i class="las la-check"></i>Fast &amp; Secured Deliveries
-                                            </li>
-                                            <li><i class="las la-check"></i>World Wide Shipping</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="row">
+                                
+                                
+                               {!! $about->description !!}
                             </div>
                         </div>
                     </div>
@@ -136,6 +108,31 @@
     <!-- Team Start -->
     @include("user.home.team", ['teams' => $teams])
     <!-- Team End -->
+
+    <!-- client section start -->
+                        <div class="container py-4">
+                              <div class="text-center mx-auto pb-3 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+                                <h2 class="text-primary mt-3">Our Clients</h2>
+                                <h3>Our {{ optional($company)->name }} Company Happy Clients</h3>
+                            </div>
+                              <div class="">
+                                    <div class="owl-carousel clientCarousel">
+                                          @foreach ($clients as $client)
+                                                <div class="swiper-slide">
+                                                <div class="card">
+                                                      <div class="card-body" style="display:flex;justify-content:center">
+                                                           <img src="{{ asset('storage/'.$client->photo) }}" class="img-fluid" style="height: 50px!important" alt="">
+                                                      </div>
+                                                </div>
+                                                </div>
+                                          
+                                          @endforeach
+                                          
+                                         
+                                    </div>
+                              </div>
+                        </div>
+                  <!-- client section end -->
 
 
 @endsection
@@ -162,6 +159,29 @@
                     items: 3
                 }
             }
+        });
+
+        $(document).ready(function () {
+        $('.clientCarousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            nav: false,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 2000,      
+            autoplaySpeed:1500,
+            slideBy: 1,
+            responsive: {
+            0:   { items: 2 },   // phones
+            576: { items: 3 },
+            768: { items: 4 },
+            1024:{ items: 5 },
+            1400:{ items: 6 }    // large screens
+            },
+            // optional: remove mouse/touch dragging so it's pure automatic (enable if you want users to drag)
+            mouseDrag: true,
+            touchDrag: true
+        });
         });
 
     </script>

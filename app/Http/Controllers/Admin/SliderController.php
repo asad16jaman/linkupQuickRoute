@@ -65,7 +65,7 @@ class SliderController extends Controller
             }
 
             Slider::where('id', '=', $id)->update($data);
-            return redirect()->route('admin.slider', ['page' => $request->query('page'), 'search' => $request->query('search')])->with('success', "Successfully updated");
+            return redirect()->route('admin.slider', ['page' => $request->query('page'), 'search' => $request->query('search')])->with('success', "Successfully updated Slider");
         }
 
 

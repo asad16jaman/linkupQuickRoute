@@ -61,7 +61,7 @@ class CategoryController extends Controller
              $backRoute =   route('admin.category');
            $backRoute = $backRoute."?page=".$request->page;
             
-            return redirect()->route('admin.category',['page'=>$request->query('page'),'search'=>$request->query('search')])->with("success", "Successfully Edited the user");
+            return redirect()->route('admin.category',['page'=>$request->query('page'),'search'=>$request->query('search')])->with("success", "Successfully Edited Category");
         }
 
         if ($request->hasFile('img')) {
@@ -72,7 +72,7 @@ class CategoryController extends Controller
         $data['nav_name'] = $request->input('nav_name');
         Category::create($data);
 
-        return back()->with("success", "Successfully added the Category");
+        return back()->with("success", "Successfully Created Category");
     }
 
     public function destroy(int $id)

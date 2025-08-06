@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DeliveryController;
+use App\Http\Controllers\Admin\FeedbackController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\FaqController;
@@ -8,12 +10,10 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\VideoGalleryController;
 use App\Http\Controllers\admin\CompanyController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\CategoryController;
-
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
 
@@ -29,6 +29,7 @@ Route::get("/teams",[HomeController::class,"getTeam"])->name("team");
 Route::get("/testimonial",[HomeController::class,"testimonial"])->name("testimonial");
 Route::get("/fqa",[HomeController::class,"fqaTemplate"])->name("fqa");
 Route::get("/pricing",[HomeController::class,"pricing"])->name("pricing");
+Route::get("/blog-detail",[HomeController::class,"blogDetail"])->name("blogDetail");
 
 //service page
 Route::get("/service/{name}",[HomeController::class,"service"])->name("user.service");
@@ -51,7 +52,7 @@ Route::group(['prefix'=> '/admin','middleware'=>'checkAdminAuth'], function () {
 });
 
 // ,'middleware'=>'checkAdminAuth'
-Route::group(['prefix'=> '/admin','as'=>'admin.'], function () {
+Route::group(['prefix'=> '/admin','middleware'=>'checkAdminAuth','as'=>'admin.'], function () {
 
     //handling users from admin pannel
     Route::get("/users/{id?}",[UsersController::class,"index"])->name("users");
@@ -59,14 +60,19 @@ Route::group(['prefix'=> '/admin','as'=>'admin.'], function () {
     Route::post("/users/{id}/delete",[UsersController::class,"deleteUser"])->name("user.delete");
 
     //edit user from user side
-    // Route::get("/users/{id}/edit",[UsersController::class,"editUser"])->name("user.edit");
-    // Route::post("/users/{id}/edit",[UsersController::class,"editUserStore"])->name("user.edit");
+    Route::get("/users/{id}/edit",[UsersController::class,"editUser"])->name("user.edit");
+    Route::post("/users/{id}/edit",[UsersController::class,"editUserStore"])->name("user.edit");
 
     
     //slider maintaining url
     Route::get("/sliders/{id?}",[SliderController::class,"index"])->name("slider");
     Route::post("/sliders/{id?}",[SliderController::class,"store"])->name("slider");
     Route::post("/sliders/{id}/delete",[SliderController::class,"destroy"])->name("slider.delete");
+
+    //feedback maintaining url
+    Route::get("/feedback/{id?}",[FeedbackController::class,"index"])->name("feedback");
+    Route::post("/feedback/{id?}",[FeedbackController::class,"store"])->name("feedback");
+    Route::post("/feedback/{id}/delete",[FeedbackController::class,"destroy"])->name("feedback.delete");
 
 
     //Service url hare
@@ -82,24 +88,20 @@ Route::group(['prefix'=> '/admin','as'=>'admin.'], function () {
 
 
     
-
-    //Video Gallery url hare
-    // Route::get("/videogallery/{id?}",[VideoGalleryController::class,"index"])->name("videogallery");
-    // Route::post("/videogallery/{id?}",[VideoGalleryController::class,"store"])->name("videogallery");
-    // Route::post("/videogallery/{id}/delete",[VideoGalleryController::class,"destory"])->name("videogallery.delete");
-
-    
-
-
     //client url hare
-    // Route::get('/clients/{id?}',[ClientController::class,'index'])->name('client');
-    // Route::post('/clients/{id?}',[ClientController::class,'store'])->name('client');
-    // Route::post('/client/{id}/delete',[ClientController::class,'destroy'])->name('client.delete');
+    Route::get('/clients',[ClientController::class,'index'])->name('client');
+    Route::post('/clients',[ClientController::class,'store'])->name('client');
+    Route::post('/client/{id}/delete',[ClientController::class,'destroy'])->name('client.delete');
 
     //team url hare
     Route::get('/teams/{id?}',[TeamController::class,'index'])->name('team');
     Route::post('/teams/{id?}',[TeamController::class,'store'])->name('team');
     Route::post('/teams/{id}/delete',[TeamController::class,'destroy'])->name('team.delete');
+
+    //Delivery url hare
+    Route::get('/delivery/{id?}',[DeliveryController::class,'index'])->name('delivery');
+    Route::post('/delivery/{id?}',[DeliveryController::class,'store'])->name('delivery');
+    Route::post('/delivery/{id}/delete',[DeliveryController::class,'destroy'])->name('delivery.delete');
 
     //Photo Gallery url hare
     Route::get("/photogallery/{id?}",[PhotoGalleryController::class,"index"])->name("photogallery");
@@ -120,8 +122,8 @@ Route::group(['prefix'=> '/admin','as'=>'admin.'], function () {
     Route::post("/company",[CompanyController::class,"create"])->name("company");
 
     //Contact url hare
-    // Route::get('/contact',[ContactController::class,'index'])->name('message');
-    // Route::post('/contact/{id}',[ContactController::class,'destroy'])->name('message.delete');
+    Route::get('/contact',[ContactController::class,'index'])->name('message');
+    Route::post('/contact/{id}',[ContactController::class,'destroy'])->name('message.delete');
 
     //admin logout
     Route::get('/logout',[DashboardController::class,'logout'])->name('logout');

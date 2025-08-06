@@ -140,9 +140,11 @@
                         <div class="container">
                                         <div class="row">
 
-                                                        <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInUp" data-wow-delay=".4s"
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 wow fadeInUp d-flex flex-column justify-content-between" data-wow-delay=".4s"
                                                                         style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                                                                        <div class="info-content-area-2">
+
+
+                                                                        <div class="info-content-area-2" style="height: 415px;overflow: hidden;">
                                                                                         <div class="section-title">
                                                                                                         <p>You Know About Us!</p>
                                                                                                         <h2>{{ optional($about)->title }}</h2>
@@ -151,21 +153,28 @@
                                                                                                         {!! $about->description !!}
                                                                                         </div>
 
-                                                                                        <div class="signature-wrap">
+                                                                                        
+
+                                                                        </div>
+
+
+                                                                <div class="signature-wrap">
                                                                                                         <a href="{{ route('about') }}"
                                                                                                                         class="main-btn primary d-none d-md-block">Learn
                                                                                                                         More</a>
 
 
-                                                                                        </div>
+                                                                 </div>
 
-                                                                        </div>
+
+
+
                                                         </div>
 
                                                         <div class="col-lg-6 col-md-12 col-sm-12 text-right wow fadeInLeft" data-wow-delay=".3s"
                                                                         style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
                                                                         <div class="about_image_3 text-end">
-                                                                                        <img src="{{ asset('assets/user/img/heroImg/3.jpg')}}" alt="">
+                                                                                        <img src="{{ $about->picture ? asset('storage').'/'.$about->picture : asset('assets/user/img/heroImg/3.jpg')}}" alt="">
                                                                         </div>
                                                         </div>
 
@@ -186,51 +195,52 @@
         <!-- Project Start -->
 
         <div class="project-area section-padding pt-30 pb-30">
-                <div class="container">
-                        <div class="row">
-                                <h3 class="text-center pb-20">Gallery</h3>
-                        </div>
-                        <div class="project-list mt-10">
-                                <div class="row mt-30">
-                                        @forelse($galleries as $gallery)
+                        <div class="container">
+                                        <div class="row">
+                                                        <h3 class="text-center pb-20">Gallery</h3>
+                                        </div>
+                                        <div class="project-list mt-10">
+                                                        <div class="row mt-30">
+                                                                        @forelse($galleries as $gallery)
 
-                                                <div class="col-xl-4 col-lg-4 col-md-6">
-                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                <div class="project-bg">
-                                                                        <img src="{{ $gallery->img ? asset('storage').'/'.$gallery->img : asset('assets/user/img/heroImg/1-1.jpg') }}" alt="">
-                                                                </div>
-                                                                <div class="project-details">
-                                                                        <h5>{{ $gallery->title }}</h5>
-                                                                        <span>{{ $gallery->type }}</span>
-                                                                </div>
-                                                        </a>
-                                                </div>
+                                                                                                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
+                                                                                                                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
+                                                                                                                                                                                                                        <div class="project-bg">
+                                                                                                                                                                                                                                                        <img src="{{ $gallery->img ? asset('storage') . '/' . $gallery->img : asset('assets/user/img/heroImg/1-1.jpg') }}"
+                                                                                                                                                                                                                                                                                        alt="">
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <div class="project-details">
+                                                                                                                                                                                                                                                        <h5>{{ $gallery->title }}</h5>
+                                                                                                                                                                                                                                                        <span>{{ $gallery->type }}</span>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                        </a>
+                                                                                                                                                        </div>
 
-                                        @empty
-                                                <div class="col-xl-4 col-lg-4 col-md-6">
-                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
-                                                                <div class="project-bg">
-                                                                        <img src="{{ asset('assets/user/img/heroImg/1-1.jpg')}}" alt="">
-                                                                </div>
-                                                                <div class="project-details">
-                                                                        <h5>Standard Courier</h5>
-                                                                        <span>Road Freight</span>
-                                                                </div>
-                                                        </a>
-                                                </div>
-                                        @endforelse
-                                        
-                                                                        
-                                 </div>
+                                                                                                                                        @empty
+                                                                                                                                                        <div class="col-xl-4 col-lg-4 col-md-6">
+                                                                                                                                                                                        <a href="{{ route('project') }}" class="single-project-wrapper">
+                                                                                                                                                                                                                        <div class="project-bg">
+                                                                                                                                                                                                                                                        <img src="{{ asset('assets/user/img/heroImg/1-1.jpg')}}" alt="">
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                        <div class="project-details">
+                                                                                                                                                                                                                                                        <h5>Standard Courier</h5>
+                                                                                                                                                                                                                                                        <span>Road Freight</span>
+                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                        </a>
+                                                                                                                                                        </div>
+                                                                                                                                        @endforelse
+
+
+                                                        </div>
+                                        </div>
                         </div>
-                </div>
         </div>
 
         <!-- Project End -->
 
 
         <!-- Experiance Start -->
-                 @include("user.home.expertis")
+        @include("user.home.expertis")
         <!-- Experiance End -->
 
         <!-- article section start -->
@@ -265,8 +275,8 @@
                                                                                                                                                         alt="">
                                                                                                                         </div>
                                                                                                                         <div class="blog-cat">
-                                                                                                                                        <a href="blog-details.html">standard, </a>
-                                                                                                                                        <a href="blog-details-2.html"> express</a>
+                                                                                                                                        <a href="{{ route('blogDetail') }}">standard, </a>
+                                                                                                                                        <a href="{{ route('blogDetail') }}"> express</a>
                                                                                                                         </div>
                                                                                                         </div>
                                                                                                         <div class="blog-desc">
@@ -275,7 +285,7 @@
                                                                                                                                         elit. Dolorem, facilis perferendis ipsam.</p>
                                                                                                         </div>
                                                                                                         <div class="blog-more">
-                                                                                                                        <a href="blog-details.html" class="main-btn border-btn">Read
+                                                                                                                        <a href="{{ route('blogDetail') }}" class="main-btn border-btn">Read
                                                                                                                                         More <i class="las la-arrow-right"></i></a>
                                                                                                         </div>
                                                                                         </div>
@@ -301,8 +311,8 @@
                                                                                                                                                         alt="">
                                                                                                                         </div>
                                                                                                                         <div class="blog-cat">
-                                                                                                                                        <a href="blog-details.html">standard, </a>
-                                                                                                                                        <a href="blog-details-2.html"> express</a>
+                                                                                                                                        <a href="{{ route('blogDetail') }}">standard, </a>
+                                                                                                                                        <a href="{{ route('blogDetail') }}"> express</a>
                                                                                                                         </div>
                                                                                                         </div>
                                                                                                         <div class="blog-desc">
@@ -311,7 +321,7 @@
                                                                                                                                         elit. Dolorem, facilis perferendis ipsam.</p>
                                                                                                         </div>
                                                                                                         <div class="blog-more">
-                                                                                                                        <a href="blog-details.html" class="main-btn border-btn">Read
+                                                                                                                        <a href="{{ route('blogDetail') }}" class="main-btn border-btn">Read
                                                                                                                                         More <i class="las la-arrow-right"></i></a>
                                                                                                         </div>
                                                                                         </div>
@@ -337,8 +347,8 @@
                                                                                                                                                         alt="">
                                                                                                                         </div>
                                                                                                                         <div class="blog-cat">
-                                                                                                                                        <a href="blog-details.html">standard, </a>
-                                                                                                                                        <a href="blog-details-2.html"> express</a>
+                                                                                                                                        <a href="{{ route('blogDetail') }}">standard, </a>
+                                                                                                                                        <a href="{{ route('blogDetail') }}"> express</a>
                                                                                                                         </div>
                                                                                                         </div>
                                                                                                         <div class="blog-desc">
@@ -347,7 +357,7 @@
                                                                                                                                         elit. Dolorem, facilis perferendis ipsam.</p>
                                                                                                         </div>
                                                                                                         <div class="blog-more">
-                                                                                                                        <a href="blog-details.html" class="main-btn border-btn">Read
+                                                                                                                        <a href="{{ route('blogDetail') }}" class="main-btn border-btn">Read
                                                                                                                                         More <i class="las la-arrow-right"></i></a>
                                                                                                         </div>
                                                                                         </div>
@@ -363,4 +373,3 @@
 
 
 @endsection
-

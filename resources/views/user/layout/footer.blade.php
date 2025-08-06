@@ -4,12 +4,12 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12 wow fadeInUp  animated" data-wow-delay="100ms" style="visibility: visible; animation-delay: 100ms; animation-name: fadeInUp;">
                         <div class="logo">
-                            <img src="assets/img/logo-white.png" alt="Qiuck Route Delivery Services logo">
+                            <img style="width:50px;height:50px" src="{{ asset('storage').'/'.optional($company)->logo }}" alt="Qiuck Route Delivery Services logo">
                         </div>
                         <div class="contact-info">
-                            <p><b>Head Quarter:</b> Burj Al fardan,&nbsp;lusail,&nbsp;Qatar</p>
-                            <p><b>Phone:</b> &#x202A;+97 430 882 665</p>
-                            <p><b>E-mail:</b> qiuckroutedelivery@gmail.com</p>
+                            {!! optional($company)->address !!}
+                            <p><b>Phone:</b> {{ optional($company)->phone }}</p>
+                            <p><b>E-mail:</b> {{ optional($company)->email }}</p>
                             <p><b>Opening Hour:</b> 24/7 hours</p>
                         </div>
 
@@ -21,11 +21,10 @@
                                 <h6>Company</h6>
                                 <ul>
                                     <li>
-                                        <a href="about.html">About Us</a>
-                                        <a href="team.html">Meet Our Team</a>
-                                        <a href="blog-standard.html">News &amp; Media</a>
-                                        <a href="project.html">Our Project</a>
-                                        <a href="contact.html">Contact</a>
+                                        <a href="{{ route('about') }}">About Us</a>
+                                        <a href="{{ route('team') }}">Meet Our Team</a>
+                                        <a href="{{ route('service') }}">Service</a>
+                                        <a href="{{ route('contact') }}">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -33,9 +32,16 @@
                                 <h6>Services</h6>
                                 <ul>
                                     <li>
-                                        <a href="standard_courier.html">Standard Courier</a>
+
+                                    @forelse($services as $service)
+                                        <a href="{{ route('user.service',['name'=>$service->nav_name]) }}">{{ $service->nav_name }}</a>
+                                    @empty
+                                        <p>No Page Found</p>
+                                    @endforelse
+
+                                        <!-- <a href="standard_courier.html">Standard Courier</a>
                                         <a href="express_courier.html">Express Courier</a>
-                                        <a href="overnight_courier.html">Over Night Courier</a>
+                                        <a href="overnight_courier.html">Over Night Courier</a> -->
                                     </li>
                                 </ul>
                             </div>
@@ -46,7 +52,7 @@
                     <div class="col-lg-3 col-md-6 wow fadeInUp  animated" data-wow-delay="400ms" style="visibility: visible; animation-delay: 400ms; animation-name: fadeInUp;">
                         <div class="subscribe-form">
                             <h6>Newsletter</h6>
-                            <form action="index.html">
+                            <form action="#">
                                 <input type="email" placeholder="Your email">
                                 <button type="submit" style="padding: 17px 20px;"><i class="bi bi-envelope-fill"></i></button>
                             </form>

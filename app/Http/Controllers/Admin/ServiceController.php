@@ -78,7 +78,7 @@ class ServiceController extends Controller
             }
 
             Service::where('id',$id)->update($data);
-            return redirect()->route('admin.service',['page'=>request()->query('page'),'search'=>request()->query('search')])->with('success','Successfully edit');
+            return redirect()->route('admin.service',['page'=>request()->query('page'),'search'=>request()->query('search')])->with('success','Successfully edit Service');
         }
 
 
@@ -91,7 +91,7 @@ class ServiceController extends Controller
         $product = Service::create($data);
 
        
-        return redirect()->back()->with('success','Successfully created Product');
+        return redirect()->back()->with('success','Successfully created Service');
     }
 
 
@@ -107,7 +107,7 @@ class ServiceController extends Controller
             
             $deleteProduct->delete();
         
-        return redirect()->route('admin.product')->with('success','successfully deleted');
+        return redirect()->route('admin.product')->with('success','successfully deleted Service');
         
     }
 

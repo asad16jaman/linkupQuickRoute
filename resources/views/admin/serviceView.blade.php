@@ -230,7 +230,7 @@
                                                         <th style="width: 35.875px;">Image</th>
                                                         <th style="width: 170.469px;">Name</th>
                                                         <th style="width: 360.469px;">Description</th>
-                                                        <th style="width: 101.219px;">Slider</th>
+                                                        <!-- <th style="width: 101.219px;">Slider</th> -->
                                                         <th style="width: 100.469px;">Category</th>
                                                         <th style="width: 81.375px;">Action</th>
                                                     </tr>
@@ -248,9 +248,9 @@
                                                         </td>
                                                         <td>{{ $product->name }}</td>
                                                         <td>{{ substr($product->description,0,50) }}...</td>
-                                                        <td>
+                                                        <!-- <td>
                                                             <a href="">Create</a>
-                                                        </td>
+                                                        </td> -->
                                                         
                                                         <td>{{ $product->category->nav_name }}</td>
                                                         

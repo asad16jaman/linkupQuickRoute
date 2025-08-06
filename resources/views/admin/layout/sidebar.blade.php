@@ -29,16 +29,25 @@
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
 
-                <li class="nav-item">
+                <li class="nav-item {{ ($page=='home') ? "active" : '' }}">
                 <a href="/admin">
                   <i class="fas fa-home"></i>
                    <p>Dashboard</p>
                 </a>
               </li>
+
               <li class="nav-item {{ ($page=='slider') ? "active" : '' }}">
                 <a href="{{ route('admin.slider') }}">
                   <i class="fas fa-sliders-h"></i>
                   <p>Slider</p>
+                 
+                </a>
+              </li>
+
+              <li class="nav-item {{ ($page=='user') ? "active" : '' }}">
+                <a href="{{ route('admin.users') }}">
+                  <i class="fas fa-user"></i>
+                  <p>User</p>
                  
                 </a>
               </li>
@@ -65,6 +74,21 @@
                   <p>Management</p>
                 </a>
               </li>
+
+              <li class="nav-item {{ ($page == 'delivery') ? 'active' : "" }}">
+                <a href="{{ route('admin.delivery') }}">
+                  <i class="fas fa-truck"></i>
+                  <p>Delivery</p>
+                </a>
+              </li>
+
+              <li class="nav-item {{ ($page=='client') ? 'active' : ''}}">
+                <a href="{{ route('admin.client') }}">
+                  <i class="fas fa-handshake"></i>
+                  <p>Clients</p>
+                  <!-- <span class="badge badge-success">4</span> -->
+                </a>
+              </li>
 			  
 			        <li class="nav-item {{ ($page=='faq') ? 'active' : '' }}">
                 <a href="{{ route('admin.faq') }}">
@@ -73,11 +97,17 @@
                 </a>
               </li>
 
+              <li class="nav-item {{ ($page=='feedback') ? 'active' : '' }}">
+                <a href="{{ route('admin.feedback') }}">
+                  <i class="fas fa-comment"></i>
+                  <p>Feedback</p>
+                </a>
+              </li>
+
               <li class="nav-item {{ ($page=='company') ? 'active' : '' }}">
                 <a href="{{ route('admin.company') }}">
                   <i class="fas fa-building"></i>
                   <p>Company</p>
-                  
                 </a>
               </li>
               
@@ -87,6 +117,14 @@
                   <p>About Us</p>
                 </a>
               </li>
+
+              <li class="nav-item {{ ($page=='contact') ? 'active' : '' }}">
+                <a href="{{ route('admin.message') }}">
+                  <i class="fas fa-envelope"></i>
+                  <p>Contact</p>
+                </a>
+              </li>
+
             </ul>
           </div>
         </div>

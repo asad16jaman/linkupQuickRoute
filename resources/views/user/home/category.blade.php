@@ -31,11 +31,6 @@
 
                 </div>
             @endforeach
-
-
-
-
-
         </div>
         <!-- Owl Carousel End -->
         @if($page == 'home')
@@ -46,6 +41,7 @@
                 </div>
             </div>
         @endif
+</div>
 </div>
 
 
@@ -64,21 +60,17 @@
             responsive: {
                 0: {
                     items: 1,
-
                     dots: false,
                 },
 
                 575: {
                     items: 1,
-
                     dots: false,
                 },
-
                 767: {
                     items: 2,
 
                 },
-
                 990: {
                     items: 3,
                     loop: true,

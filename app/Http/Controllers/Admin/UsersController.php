@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,101 +16,87 @@ class UsersController extends Controller
 
 
     public function index(Request $request,?int $id = null ){
-
-
         $editUser = null;
         if( $id != null ){
             $editUser = User::find($id);
         }
-
         $searchValue = request()->query("search",null);
         if( $searchValue != null ){
             $allUsers = User::where("username","like","%".$searchValue."%")->orderBy('id','desc')->simplePaginate(3);
         }else{
             $allUsers = User::orderBy('id','desc')->simplePaginate(3);
         };
-        
         return view("admin.users",compact(['allUsers','editUser']));
     }
-
-
     public function storeUser(Request $request,? int $id = null){
-
         $valRule = [
-            'username' => ['required', 'string', 'unique:users,username'],
-            'email' => ['required', 'email'],
+            'email' => ['nullable', 'email'],
             'type' => ['required', 'in:customer,admin'], 
             
         ] ;
-        if( $id = null ){
+        if( $id == null ){
             $valRule['password'] = 'required';
+            $valRule['username'] = ['required', 'string', 'unique:users,username'];
         }
         $request->validate($valRule);
-
-        $data = $request->only(['username','email','type','fullname']);
-        
+        $data = $request->only(['email','type','fullname']);
         if( $id != null ){
-
-            unset($data['username']);
-            
-            //
             if(trim($request->password) != ''){
                 $data['password'] = Hash::make($request->password);
             }
-            $currentEditUser = User::find($id);
+            try{
+                $currentEditUser = User::find($id);
+                if($request->hasFile('picture')){
 
-            
+                    //delete if user already have profile picture...
+                    if( $currentEditUser->picture != null ){
+                        Storage::delete($currentEditUser->picture);
 
-            if($request->hasFile('picture')){
-
-                //delete if user already have profile picture...
-                if( $currentEditUser->picture != null ){
-                    Storage::delete($currentEditUser->picture);
-
+                    }
+                    $path = $request->file('picture')->store('profile');
+                    $data['picture'] = $path;
                 }
-
-
+                User::where('id','=',$id)->update($data);
+                return redirect()->route('admin.users',['page'=>request()->query('page'),'search'=>request()->query('search')])->with("success","User Successfully Updated!");
+            }catch(Exception $e){
+                Log::error("this message is from : ".__CLASS__."Line is : ".__LINE__." messages is ".$e->getMessage());
+                return redirect()->route('error');
+            }
+        }
+        $data['password'] = $request->password;
+        $data['username'] = $request->username;
+        try{
+            if($request->hasFile('picture')){
                 $path = $request->file('picture')->store('profile');
                 $data['picture'] = $path;
             }
-
-            User::where('id','=',$id)->update($data);
-            return redirect()->route('admin.users',['page'=>request()->query('page'),'search'=>request()->query('search')])->with("success","Successfully Edit the user");
+            User::create($data);
+            return back()->with("success","User Successfully created!");
+        }catch(Exception $e){
+            Log::error("this message is from : ".__CLASS__."Line is : ".__LINE__." messages is ".$e->getMessage());
+            return redirect()->route('error');
         }
-
-        $data['password'] = $request->password;
-
-        if($request->hasFile('picture')){
-            $path = $request->file('picture')->store('profile');
-            $data['picture'] = $path;
-        }
-
-
-
-        User::create($data);
-        
-        return back()->with("success","Successfully added the user");
     }
 
     public function deleteUser($id){
-
-        $user = User::find($id);
-        if($user){
-            if( $user->picture != null ){
-                    Storage::delete($user->picture);
-
-                }
-            $user->delete();
-            return back()->with("success","successfully deleted user");
+        try{
+            $user = User::find($id);
+            if($user){
+                if( $user->picture != null ){
+                        Storage::delete($user->picture);
+                    }
+                $user->delete();
+                return back()->with("success","User Successfully Deleted!");
+            }
+            return back()->with("warning","No User Detected");
+        }catch(Exception $e){
+            Log::error("this message is from : ".__CLASS__."Line is : ".__LINE__." messages is ".$e->getMessage());
+            return redirect()->route('error');
         }
-
-        return back()->with("warning","No User Detected");
        
     }
 
     public function editUser($id){
-
-
         $editUser = User::find($id);
         return view("admin.userprofile",compact(['editUser']));
     }
@@ -121,37 +109,25 @@ class UsersController extends Controller
                 'type' => $request->type,
                 'fullname' => $request->fullname
             ];
-            //
             if(trim($request->password) != ''){
                 $data['password'] = Hash::make($request->password);
             }
-
-            $currentEditUser = User::find($id);
-             if($request->hasFile('picture')){
-
-            //delete if user already have profile picture...
-            if( $currentEditUser->picture != null ){
-                Storage::delete($currentEditUser->picture);
-
+            try{
+                $currentEditUser = User::findOrFail($id);
+                if($request->hasFile('picture')){
+                    //delete if user already have profile picture...
+                    if( $currentEditUser->picture != null ){
+                        Storage::delete($currentEditUser->picture);
+                    }
+                    $path = $request->file('picture')->store('profile');
+                    $data['picture'] = $path;
+                }
+                User::where('id','=',$id)->update($data);
+                return redirect()->route('admin.user.edit',['id' => $id])->with("success","User Successfully Updated!");
+            }catch(Exception $e){
+                Log::error("this message is from : ".__CLASS__."Line is : ".__LINE__." messages is ".$e->getMessage());
+                return redirect()->route('error');
             }
-
-
-            $path = $request->file('picture')->store('profile');
-            $data['picture'] = $path;
-            }
-
-            User::where('id','=',$id)->update($data);
-
-
-            return redirect()->route('admin.user.edit',['id' => $id])->with("success","Successfully Edit the user");
-
     }
-
-    
-
-
-
-
-
 
 }

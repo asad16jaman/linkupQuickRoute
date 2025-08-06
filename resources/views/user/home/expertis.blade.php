@@ -50,7 +50,7 @@
                                                         <div class="subscribed-wrap">
                                                                         <div class="subscribe-form">
                                                                                         <h3>Join the community of over a million people</h3>
-                                                                                        <form action="index.html">
+                                                                                        <form action="#">
                                                                                                         <input type="email" placeholder="Your email">
                                                                                                         <button style="padding: 17px 30px;" type="submit"><i class="bi bi-envelope-fill"></i></button>
                                                                                         </form>

@@ -67,7 +67,7 @@ class PhotoGalleryController extends Controller
             $data['img'] = $path;
         }
         PhotoGallery::create($data);
-        return back()->with("success", "Successfully Gallery Added");
+        return back()->with("success", "Successfully Gallery created");
 
     }
 
@@ -82,7 +82,7 @@ class PhotoGalleryController extends Controller
             $data->delete();
         }
 
-        return redirect()->route('admin.photogallery')->with('success', 'Successfully Delete Category');
+        return redirect()->route('admin.photogallery')->with('success', 'Successfully Delete Gallery');
     }
 
 
